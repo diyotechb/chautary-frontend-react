@@ -6,6 +6,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 const NAV_LINKS = [
   {
@@ -19,6 +26,21 @@ const NAV_LINKS = [
   {
     title: "About us",
     link: "/about",
+  },
+];
+
+const REGIONS = [
+  {
+    title: "UK",
+    value: "uk",
+  },
+  {
+    title: "USA",
+    value: "usa",
+  },
+  {
+    title: "Australia",
+    value: "aus",
   },
 ];
 
@@ -58,7 +80,22 @@ const Header = () => {
         >
           Dashboard <ChevronRight />
         </Button>
-        <p>USA</p>
+        <Select defaultValue={"usa"}>
+          <SelectTrigger className="w-24 px-2 text-xs font-medium tracking-wide !outline-none !ring-0 !ring-offset-0">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent className="font-medium">
+            {REGIONS.map((region) => (
+              <SelectItem
+                key={region.value}
+                value={region.value}
+                className="cursor-pointer !text-xs focus:bg-primary focus:text-white"
+              >
+                {region.title}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
       <Menu className="size-8 lg:hidden" role="button" />
     </header>
