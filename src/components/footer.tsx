@@ -1,4 +1,4 @@
-import { ChevronRight, MapIcon, MapPinIcon, PhoneCall } from "lucide-react";
+import { ChevronRight, MapPinIcon, PhoneCall } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -51,7 +51,7 @@ const FOOTER_LINKS = [
 const Footer = () => {
   return (
     <footer className="flex flex-col pt-24">
-      <div className="mx-auto flex w-full max-w-screen-xl flex-wrap items-start justify-between gap-12">
+      <div className="mx-auto flex w-full max-w-screen-xl flex-wrap items-start justify-between gap-12 px-8">
         {FOOTER_LINKS.map((footer) => (
           <section key={footer.section}>
             <h3 className="text-xl font-bold">{footer.section}</h3>
@@ -94,18 +94,20 @@ const Footer = () => {
           </ul>
         </section>
       </div>
-      <section className="relative h-64">
+      <section className="relative min-h-48 w-full overflow-visible md:min-h-64 lg:min-h-96">
         <Image
           src="/assets/img/footer-image.png"
-          fill
+          layout="fill"
           alt=""
-          className="-z-10 object-contain"
+          className="object-fill"
         />
-        <div className="h-2 w-full border-t" />
-        <p className="mt-4 text-center text-sm font-medium">
-          © {new Date().getFullYear()}{" "}
-          <span className="text-primary">Chautary</span> All rights reserved.
-        </p>
+        <div className="absolute top-0 w-full">
+          <div className="mx-auto mt-16 h-2 max-w-screen-xl border-t px-8" />
+          <p className="mt-4 text-center text-sm font-medium">
+            © {new Date().getFullYear()}{" "}
+            <span className="text-primary">Chautary</span> All rights reserved.
+          </p>
+        </div>
       </section>
     </footer>
   );
