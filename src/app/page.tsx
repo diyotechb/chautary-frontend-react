@@ -11,6 +11,7 @@ export default function Home() {
         width={1920}
         className="-mt-2 min-h-full w-full object-cover object-left"
         draggable={false}
+        priority
       />
     </main>
   );
