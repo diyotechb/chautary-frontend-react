@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Key } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -15,19 +15,20 @@ import {
 } from "./ui/select";
 import HeaderDrawerMobile from "./header-drawer-mobile";
 import { useEffect, useState } from "react";
+import { isActive } from "@/lib/pathname-util";
 
 export const NAV_LINKS = [
   {
     title: "Home",
-    link: "",
+    link: "/",
   },
   {
     title: "Business",
-    link: "listings",
+    link: "/listings",
   },
   {
     title: "About us",
-    link: "about",
+    link: "/about",
   },
 ];
 
@@ -49,7 +50,7 @@ export const REGIONS = [
 const Header = () => {
   const pathname = usePathname();
   const [showFloatingHeader, setShowFloatingHeader] = useState(false);
-
+  console.log(pathname);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 60) {
@@ -88,7 +89,7 @@ const Header = () => {
               key={item.title}
               className={cn(
                 "cursor-pointer px-4 font-medium transition-colors duration-300 hover:text-primary",
-                pathname.includes(item.link) && "text-primary",
+                isActive(pathname, item.link) && "text-primary",
               )}
             >
               <Link href={item.link}>{item.title}</Link>
