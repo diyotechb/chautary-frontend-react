@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronRight, Menu } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,23 +13,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import HeaderDrawerMobile from "./header-drawer-mobile";
+import { useEffect, useState } from "react";
 
-const NAV_LINKS = [
+export const NAV_LINKS = [
   {
     title: "Home",
-    link: "/",
+    link: "",
   },
   {
     title: "Business",
-    link: "/listings",
+    link: "listings",
   },
   {
     title: "About us",
-    link: "/about",
+    link: "about",
   },
 ];
 
-const REGIONS = [
+export const REGIONS = [
   {
     title: "UK",
     value: "uk",
@@ -46,8 +48,29 @@ const REGIONS = [
 
 const Header = () => {
   const pathname = usePathname();
+  const [showFloatingHeader, setShowFloatingHeader] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 60) {
+        setShowFloatingHeader(true);
+      } else {
+        setShowFloatingHeader(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
   return (
-    <header className="flex items-center justify-between px-3 py-4 text-base shadow-md lg:px-24">
+    <header
+      className={cn(
+        "flex w-full -translate-y-1 items-center justify-between bg-white px-3 py-4 text-base shadow-md lg:px-24",
+        showFloatingHeader &&
+          "fixed top-0 z-50 translate-y-0 bg-white !shadow-md duration-300 slide-in-from-top-4",
+      )}
+    >
       <Link href="/">
         <Image
           src="/assets/img/logo.png"
@@ -76,7 +99,7 @@ const Header = () => {
       <div className="hidden items-center justify-center space-x-4 lg:flex">
         <Button
           variant="outline"
-          className="rounded-full border border-primary px-8 py-6 text-primary duration-500 hover:bg-primary hover:text-white"
+          className="rounded-full border border-primary px-8 py-6 text-primary !ring-0 duration-500 hover:bg-primary hover:text-white"
         >
           Dashboard <ChevronRight />
         </Button>
@@ -97,7 +120,7 @@ const Header = () => {
           </SelectContent>
         </Select>
       </div>
-      <Menu className="size-8 lg:hidden" role="button" />
+      <HeaderDrawerMobile />
     </header>
   );
 };
