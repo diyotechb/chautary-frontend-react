@@ -32,7 +32,7 @@ const Search = () => {
   return (
     <search className="flex h-16 w-full items-center rounded bg-white pl-8 pr-4 shadow-lg shadow-primary">
       <div className="flex flex-1 items-center">
-        <SearchIcon className="text-dark" />
+        <SearchIcon className="text-muted-foreground" />
         <Input
           placeholder="What are you looking for ?"
           className="h-full flex-1 !border-none text-base font-medium text-dark !outline-none !ring-0 !ring-offset-0"
@@ -66,7 +66,7 @@ const Search = () => {
             />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[200px] p-0" side="bottom">
+        <PopoverContent className="h-64 w-[200px] p-0" side="bottom">
           <Command>
             <CommandInput placeholder="" />
             <CommandList>
@@ -100,7 +100,9 @@ const Search = () => {
           </Command>
         </PopoverContent>
       </Popover>
-      <Button className="py-6 font-bold">Search Now</Button>
+      <Button className="py-6 font-bold duration-300 hover:bg-dark">
+        Search Now
+      </Button>
     </search>
   );
 };

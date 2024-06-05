@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(montserrat.className, "antialiased")}>
+      <body className={cn(montserrat.className, "scroll-smooth antialiased")}>
         <Header />
         {children}
         <Footer />
