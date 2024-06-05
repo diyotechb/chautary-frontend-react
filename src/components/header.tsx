@@ -96,7 +96,7 @@ const Header = () => {
           ))}
         </ul>
       </nav>
-      <div className="hidden items-center justify-center space-x-4 lg:flex">
+      <div className="hidden items-center justify-center gap-8 lg:flex">
         <Button
           variant="outline"
           className="rounded-full border border-primary px-8 py-6 text-primary !ring-0 duration-500 hover:bg-primary hover:text-white"
@@ -104,7 +104,7 @@ const Header = () => {
           Dashboard <ChevronRight />
         </Button>
         <Select defaultValue={"usa"}>
-          <SelectTrigger className="w-24 px-2 text-xs font-medium tracking-wide !outline-none !ring-0 !ring-offset-0">
+          <SelectTrigger className="w-24 text-xs font-medium tracking-wide !outline-none !ring-0 !ring-offset-0">
             <SelectValue />
           </SelectTrigger>
           <SelectContent className="font-medium">
