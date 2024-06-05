@@ -1,6 +1,6 @@
 import Search from "@/components/search";
+import { TypeWriterComponent } from "@/components/type-writer";
 import Image from "next/image";
-
 export default function Home() {
   return (
     <main className="relative flex h-[90vh] w-full">
@@ -12,12 +12,19 @@ export default function Home() {
         draggable={false}
         priority
       />
-      <section className="w-1/2">
-        <h3>Find IT Consulting</h3>
-        <p>
-          Explore your favorites effortlessly! Find businesses for every
-          occasion, right here, right now.
-        </p>
+      <section className="ml-40 mt-52 flex w-1/2 flex-col gap-8">
+        <div className="w-full">
+          <h3 className="flex space-x-2 text-[50px] font-bold leading-relaxed">
+            <span>Find</span>
+            <span className="text-primary">
+              <TypeWriterComponent />
+            </span>
+          </h3>
+          <p className="-ml-4 text-center text-lg text-[#666]">
+            Explore your favorites effortlessly! Find businesses for every
+            occasion, right here, right now.
+          </p>
+        </div>
         <Search />
       </section>
     </main>
