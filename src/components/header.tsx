@@ -50,7 +50,6 @@ export const REGIONS = [
 const Header = () => {
   const pathname = usePathname();
   const [showFloatingHeader, setShowFloatingHeader] = useState(false);
-  console.log(pathname);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 60) {
@@ -67,9 +66,9 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "flex w-full -translate-y-1 items-center justify-between bg-white px-3 py-4 text-base shadow-md lg:px-24",
+        "z-[100] flex w-full -translate-y-1 items-center justify-between bg-white px-3 py-4 text-base shadow-md duration-300 lg:px-24",
         showFloatingHeader &&
-          "fixed top-0 z-50 translate-y-0 bg-white !shadow-md duration-300 slide-in-from-top-4",
+          "fixed top-0 z-[100] translate-y-0 !shadow-md slide-in-from-top-4",
       )}
     >
       <Link href="/">
