@@ -97,7 +97,7 @@ const Footer = () => {
       <section className="relative min-h-48 w-full overflow-visible md:min-h-64 lg:min-h-96">
         <Image
           src="/assets/img/footer-image.png"
-          layout="fill"
+          fill
           alt=""
           className="object-fill"
         />

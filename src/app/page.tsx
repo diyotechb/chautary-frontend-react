@@ -6,7 +6,6 @@ export default function Home() {
       <Image
         src="/assets/img/main-banner-bg.jpg"
         alt=""
-        layout="responsive"
         height={1080}
         width={1920}
         className="-mt-2 min-h-full w-full object-cover object-left"
