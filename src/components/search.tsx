@@ -2,13 +2,7 @@
 
 import { LISTINGS } from "@/lib/listings";
 import { cn } from "@/lib/utils";
-import {
-  Check,
-  ChevronDown,
-  ChevronsUpDown,
-  List,
-  SearchIcon,
-} from "lucide-react";
+import { Check, ChevronDown, List, SearchIcon } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
 import {
