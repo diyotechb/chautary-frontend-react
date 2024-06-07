@@ -1,5 +1,4 @@
-import { MapPinned, UsersRound } from "lucide-react";
-import { title } from "process";
+import { CircleCheckBig, MapPinned, UsersRound } from "lucide-react";
 
 export const Steps = [
   {
@@ -15,7 +14,7 @@ export const Steps = [
       "Reach out to the friendly owners of your favorite spots. Ask questions, clarify details, and get personalized recommendations to enhance your experience.",
   },
   {
-    icon: <MapPinned className="size-20 stroke-primary" />,
+    icon: <CircleCheckBig className="size-20 stroke-primary" />,
     title: "Explore More Businesses",
     description:
       "Discover additional businesses and explore new opportunities. With a wide range of options available, you're sure to find what you're looking for.",
