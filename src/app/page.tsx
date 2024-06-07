@@ -1,10 +1,13 @@
-import CategoryList from "@/components/category-list";
+import CategorySectionWithHeader from "@/components/home/categories";
+import CategoryList from "@/components/home/category-list";
+import FeaturedBusinessList from "@/components/home/featured-business-list";
 import Search from "@/components/search";
 import { TypeWriterComponent } from "@/components/type-writer";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 export default function Home() {
   return (
-    <main className="flex w-full flex-col gap-20">
+    <main className="flex w-full flex-col gap-12 md:gap-20">
       <div className="relative flex h-[90vh]">
         <Image
           src="/assets/img/main-banner-bg.jpg"
@@ -30,8 +33,27 @@ export default function Home() {
           <Search />
         </section>
       </div>
-      <div className="mx-auto w-full max-w-screen-xl px-8">
-        <CategoryList />
+      <div className="w-full px-4">
+        <CategorySectionWithHeader
+          title="Browse Businesses by Category"
+          description="Discover a variety of businesses sorted by category for your
+        convenience. Find everything from restaurants for special occasions to
+        reliable home services. Our directory makes it easy to find what you
+        need. Start exploring today!"
+        >
+          <CategoryList />
+        </CategorySectionWithHeader>
+      </div>
+      <div className="bg-gray-50 px-4 py-12 md:py-20">
+        <CategorySectionWithHeader
+          title="Featured Businesses"
+          description="Explore the top businesses in your area! From highly recommended eateries to top-rated services, discover what's trending nearby. Whether you're looking for recommendations or staying updated on local favorites, explore our featured businesses today."
+        >
+          <FeaturedBusinessList />
+          <Button className="px-8 py-6 font-semibold duration-500 hover:shadow-sm hover:shadow-primary">
+            More Listings
+          </Button>
+        </CategorySectionWithHeader>
       </div>
     </main>
   );
