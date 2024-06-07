@@ -1,4 +1,4 @@
-import { featuredBusiness } from "@/lib/featuredBusiness";
+import { featuredBusiness } from "@/lib/featured-business";
 import { HeartIcon, MapIcon, MapPin, MapPinned } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
