@@ -56,7 +56,7 @@ export default function Home() {
           </Button>
         </CategorySectionWithHeader>
       </div>
-      <div>
+      <div className="px-4">
         <CategorySectionWithHeader
           title="How It Works"
           description="Explore our simple three-step process to discover and reserve the perfect places for your next adventure."
