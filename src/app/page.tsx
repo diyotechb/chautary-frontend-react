@@ -1,6 +1,7 @@
 import CategorySectionWithHeader from "@/components/home/categories";
 import CategoryList from "@/components/home/category-list";
 import FeaturedBusinessList from "@/components/home/featured-business-list";
+import { HowItWorks } from "@/components/home/how-it-works";
 import Search from "@/components/search";
 import { TypeWriterComponent } from "@/components/type-writer";
 import { Button } from "@/components/ui/button";
@@ -53,6 +54,14 @@ export default function Home() {
           <Button className="px-8 py-6 font-semibold duration-500 hover:shadow-sm hover:shadow-primary">
             More Listings
           </Button>
+        </CategorySectionWithHeader>
+      </div>
+      <div>
+        <CategorySectionWithHeader
+          title="How It Works"
+          description="Explore our simple three-step process to discover and reserve the perfect places for your next adventure."
+        >
+          <HowItWorks />
         </CategorySectionWithHeader>
       </div>
     </main>
