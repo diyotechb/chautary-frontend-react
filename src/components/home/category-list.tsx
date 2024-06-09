@@ -12,7 +12,7 @@ const CategoryList = () => {
           className="h-40 w-full cursor-pointer rounded-md border px-8 shadow-md shadow-primary transition-shadow duration-200 ease-linear hover:shadow-lg hover:shadow-primary sm:w-48"
         >
           <Link
-            href={`/listings/${listing.id}`}
+            href={`/listings?categoryId=${listing.id}`}
             className="flex h-full w-full flex-col items-center justify-center gap-4"
           >
             <Image
