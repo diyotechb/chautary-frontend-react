@@ -44,7 +44,7 @@ const ListingPage = () => {
           </div>
         </div>
       </section>
-      <section className="h-[70px] w-full bg-gray-100">
+      <section className="w-full">
         <ListingTab />
       </section>
     </div>

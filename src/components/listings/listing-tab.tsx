@@ -18,7 +18,7 @@ const ListingTab = () => {
   const [currentTab, setCurrentTab] = useState("overview");
 
   return (
-    <div className="mt-2 h-[70px] w-full bg-gray-100">
+    <div className="h-[70px] w-full bg-gray-100">
       <div className="mx-auto h-full w-full max-w-screen-xl space-x-4">
         {TABS.map((tab) => (
           <Button
