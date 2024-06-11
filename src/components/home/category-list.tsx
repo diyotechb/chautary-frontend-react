@@ -1,5 +1,5 @@
 import { type Category } from "@/types";
-import { PlusCircle } from "lucide-react";
+import { ImageIcon, PlusCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,15 +15,18 @@ const CategoryList = ({ categories }: { categories: Category[] }) => {
             href={`/listings?categoryId=${category.id}`}
             className="flex h-full w-full flex-col items-center justify-center gap-4"
           >
-            <Image
-              src={
-                category?.imageUrl ?? "https://via.placeholder.com/150/ffa07a"
-              }
-              alt={category.name}
-              height={55}
-              width={55}
-              className="rounded-full"
-            />
+            {category?.imageUrl ? (
+              <Image
+                src={category?.imageUrl}
+                alt={category.name}
+                height={55}
+                width={55}
+                className="rounded-full"
+              />
+            ) : (
+              <ImageIcon className="size-10 stroke-gray-300" />
+            )}
+
             <p className="max-w-36 overflow-hidden text-ellipsis text-nowrap text-start text-base font-semibold leading-relaxed">
               {category.name}
             </p>
