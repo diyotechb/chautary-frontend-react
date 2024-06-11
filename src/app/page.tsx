@@ -5,23 +5,36 @@ import { HowItWorks } from "@/components/home/how-it-works";
 import Search from "@/components/search";
 import { TypeWriterComponent } from "@/components/type-writer";
 import { Button } from "@/components/ui/button";
-import { CategoriesService } from "@/services";
-import { Category } from "@/types";
+import { BusinessService, CategoriesService } from "@/services";
+import type { Business, Category } from "@/types";
 import { QueryClient } from "@tanstack/react-query";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function Home() {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: ["categories"],
-    queryFn: () => {
-      return CategoriesService.getAllCategories();
-    },
-  });
+  await Promise.allSettled([
+    queryClient.prefetchQuery({
+      queryKey: ["categories"],
+      queryFn: () => {
+        return CategoriesService.getAllCategories();
+      },
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ["featuredBusinesses"],
+      queryFn: () => {
+        return BusinessService.getFeaturedBusinesses();
+      },
+    }),
+  ]);
 
   const categories: Category[] | undefined = queryClient.getQueryData([
     "categories",
+  ]);
+
+  const featuredBusinesses: Business[] | undefined = queryClient.getQueryData([
+    "featuredBusinesses",
   ]);
 
   return (
@@ -64,17 +77,22 @@ export default async function Home() {
           </CategorySectionWithHeader>
         </div>
       )}
-      <div className="bg-gray-50 px-4 py-12 md:py-20">
-        <CategorySectionWithHeader
-          title="Featured Businesses"
-          description="Explore the top businesses in your area! From highly recommended eateries to top-rated services, discover what's trending nearby. Whether you're looking for recommendations or staying updated on local favorites, explore our featured businesses today."
-        >
-          <FeaturedBusinessList />
-          <Button className="px-8 py-6 font-semibold duration-500 hover:shadow-sm hover:shadow-primary">
-            More Listings
-          </Button>
-        </CategorySectionWithHeader>
-      </div>
+      {featuredBusinesses && (
+        <div className="bg-gray-50 px-4 py-12 md:py-20">
+          <CategorySectionWithHeader
+            title="Featured Businesses"
+            description="Explore the top businesses in your area! From highly recommended eateries to top-rated services, discover what's trending nearby. Whether you're looking for recommendations or staying updated on local favorites, explore our featured businesses today."
+          >
+            <FeaturedBusinessList featuredBusinesses={featuredBusinesses} />
+            <Link
+              href="/listings"
+              className="rounded p-4 text-sm font-semibold ring ring-primary duration-500 hover:bg-primary hover:text-white hover:ring-offset-2"
+            >
+              More Listings
+            </Link>
+          </CategorySectionWithHeader>
+        </div>
+      )}
       <div className="px-4">
         <CategorySectionWithHeader
           title="How It Works"
