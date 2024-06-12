@@ -4,7 +4,6 @@ import FeaturedBusinessList from "@/components/home/featured-business-list";
 import { HowItWorks } from "@/components/home/how-it-works";
 import Search from "@/components/search";
 import { TypeWriterComponent } from "@/components/type-writer";
-import { Button } from "@/components/ui/button";
 import { BusinessService, CategoriesService } from "@/services";
 import type { Business, Category } from "@/types";
 import { QueryClient } from "@tanstack/react-query";
@@ -17,14 +16,14 @@ export default async function Home() {
   await Promise.allSettled([
     queryClient.prefetchQuery({
       queryKey: ["categories"],
-      queryFn: () => {
-        return CategoriesService.getAllCategories();
+      queryFn: async () => {
+        return CategoriesService.getAllCategories().then((res) => res.data);
       },
     }),
     queryClient.prefetchQuery({
       queryKey: ["featuredBusinesses"],
-      queryFn: () => {
-        return BusinessService.getFeaturedBusinesses();
+      queryFn: async () => {
+        return BusinessService.getFeaturedBusinesses().then((res) => res.data);
       },
     }),
   ]);
