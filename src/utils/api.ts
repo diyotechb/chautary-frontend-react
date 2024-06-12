@@ -18,7 +18,7 @@ API.interceptors.request.use(
 
 API.interceptors.response.use(
   (response) => {
-    return Promise.resolve(response.data?.data);
+    return Promise.resolve(response.data);
   },
   (error: AxiosError) => {
     return Promise.reject(error.response);
