@@ -20,31 +20,31 @@ const BusinessCard = ({
   linkUrl,
 }: BusinessCardProps) => {
   return (
-    <Link
-      href={linkUrl}
-      className="flex h-full w-full flex-col items-start justify-center"
-    >
+    <Link href={linkUrl} className="flex flex-col items-start justify-center">
       <div className="relative size-full">
-        {imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt={name}
-            height={252}
-            width={382}
-            className="object-cover"
-          />
-        ) : (
-          <div className="flex h-[250px] w-full items-center justify-center">
-            <ImageIcon className="size-24 stroke-gray-200" />
-          </div>
-        )}
+        <div className="aspect-h-9 aspect-w-16 relative overflow-hidden">
+          {imageUrl ? (
+            <Image
+              src={
+                "https://via.placeholder.com/380x252?text=The+Gourmet+Kitchen"
+              }
+              alt={name}
+              fill
+              className="object-cover"
+            />
+          ) : (
+            <div className="flex items-center justify-center bg-muted">
+              <ImageIcon className="size-16 stroke-gray-200" />
+            </div>
+          )}
+        </div>
         {isFeatured && (
           <div className="absolute right-6 top-6 flex size-8 items-center justify-center rounded-full bg-black/50 duration-300 hover:bg-primary">
             <HeartIcon className="size-4 text-white" />
           </div>
         )}
       </div>
-      <div className="flex flex-col gap-6 p-6">
+      <div className="flex w-full flex-col gap-6 p-6">
         <div className="flex items-center gap-4">
           {category && (
             <span className="group flex items-center gap-2">
@@ -65,9 +65,12 @@ const BusinessCard = ({
             </p>
           </span>
         </div>
-        <p className="line-clamp-2 overflow-hidden text-ellipsis text-wrap text-start text-base font-bold leading-relaxed">
+        <abbr
+          className="line-clamp-2 w-full text-start text-base font-bold leading-relaxed no-underline"
+          title={name}
+        >
           {name}
-        </p>
+        </abbr>
       </div>
     </Link>
   );
