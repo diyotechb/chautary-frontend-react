@@ -46,3 +46,11 @@ export interface Business {
   youtube: string | null;
   gallery: any[];
 }
+
+export interface IPaginatedBusiness {
+  data: Business[];
+  pageNo: number;
+  pageSize: number;
+  totalPages: number;
+  totalElement: number;
+}
