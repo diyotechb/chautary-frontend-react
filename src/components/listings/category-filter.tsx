@@ -1,11 +1,17 @@
 "use client";
 
-import { LISTINGS } from "@/lib/listings";
+import { type Category } from "@/types";
 import { ChevronDown } from "lucide-react";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
-const CategoryFilter = ({ categoryId }: { categoryId?: string }) => {
+const CategoryFilter = ({
+  categoryId,
+  categories,
+}: {
+  categoryId?: string;
+  categories?: Category[];
+}) => {
   const pathname = usePathname();
   const params = useSearchParams();
   const { replace } = useRouter();
@@ -39,17 +45,22 @@ const CategoryFilter = ({ categoryId }: { categoryId?: string }) => {
             All
           </label>
         </div>
-        {LISTINGS.map((listing) => (
-          <div key={listing.id} className="flex items-center space-x-3">
-            <RadioGroupItem value={listing.id} id={listing.id} />
-            <label
-              htmlFor={listing.id}
-              className="cursor-pointer text-sm font-medium"
-            >
-              {listing.name}
-            </label>
-          </div>
-        ))}
+
+        {categories?.length &&
+          categories.map((category) => (
+            <div key={category.id} className="flex items-center space-x-3">
+              <RadioGroupItem
+                value={category.id.toString()}
+                id={category.id.toString()}
+              />
+              <label
+                htmlFor={category.id.toString()}
+                className="cursor-pointer text-sm font-medium"
+              >
+                {category.name}
+              </label>
+            </div>
+          ))}
       </RadioGroup>
     </aside>
   );

@@ -1,6 +1,5 @@
-import { featuredBusiness } from "@/lib/featured-business";
-import BusinessCard from "./business-card";
 import { Business } from "@/types";
+import BusinessCard from "./business-card";
 
 const FeaturedBusinessList = ({
   featuredBusinesses,
@@ -20,7 +19,7 @@ const FeaturedBusinessList = ({
             linkUrl={`/listings/${business.id}`}
             location={`${business.address.city},${business.address.country}`}
             isFeatured
-            category={business.category.name}
+            category={business?.category?.name}
           />
         </li>
       ))}
