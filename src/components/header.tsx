@@ -1,10 +1,13 @@
 "use client";
 
+import { isActive } from "@/lib/pathname-util";
 import { cn } from "@/lib/utils";
-import { ChevronRight, Key } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import HeaderDrawerMobile from "./header-drawer-mobile";
 import { Button } from "./ui/button";
 import {
   Select,
@@ -13,9 +16,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import HeaderDrawerMobile from "./header-drawer-mobile";
-import { useEffect, useState } from "react";
-import { isActive } from "@/lib/pathname-util";
 
 export const NAV_LINKS = [
   {
