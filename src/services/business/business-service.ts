@@ -1,3 +1,4 @@
+import { IPaginatedBusiness } from "@/types";
 import { API } from "@/utils/api";
 
 const getFeaturedBusinesses = async (pageNo = 0, pageSize = 6) => {
@@ -15,7 +16,7 @@ const getPaginatedBusinesses = async (
   categoryId = "",
   sortBy = "",
 ) => {
-  return API.get("/business/paginated", {
+  const business: IPaginatedBusiness = await API.get("/business/paginated", {
     params: {
       pageNo,
       pageSize,
@@ -23,6 +24,7 @@ const getPaginatedBusinesses = async (
       sortBy,
     },
   });
+  return business;
 };
 
 export const BusinessService = {
