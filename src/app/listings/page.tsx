@@ -1,9 +1,8 @@
-import BusinessCard from "@/components/home/business-card";
+import { BusinessGrid } from "@/components/listings/business-grid";
 import CategoryFilter from "@/components/listings/category-filter";
-import { CategorySort } from "@/components/listings/category-sort";
 import Search from "@/components/search";
 import { BusinessService, CategoriesService } from "@/services";
-import { type IPaginatedBusiness, type Category } from "@/types";
+import { type Category } from "@/types";
 import { QueryClient } from "@tanstack/react-query";
 
 const ListingsPage = async ({
@@ -44,13 +43,6 @@ const ListingsPage = async ({
     },
   });
 
-  const businesses: IPaginatedBusiness | undefined = queryClient.getQueryData([
-    "paginatedBusinesses",
-    searchParams.categoryId,
-    searchParams.sortBy,
-    searchParams.page,
-  ]);
-
   return (
     <div className="flex flex-col gap-8">
       <section className="bg-gray-50 px-4 py-20">
@@ -68,32 +60,11 @@ const ListingsPage = async ({
             categories={categories}
           />
         </div>
-        <div className="w-full space-y-6">
-          <div className="flex flex-col-reverse justify-between gap-4 md:flex-row md:items-center md:gap-0">
-            <p className="text-sm font-semibold text-dark">
-              We found {businesses?.totalElement} listings available for you.
-            </p>
-            <CategorySort sortBy={searchParams.sortBy} />
-          </div>
-          <ul className="grid grid-cols-1 items-start gap-12 md:grid-cols-2">
-            {businesses?.data &&
-              businesses?.data.length > 0 &&
-              businesses.data.map((business) => (
-                <li
-                  key={business.name}
-                  className="h-full w-full cursor-pointer rounded-md border shadow-md shadow-primary transition-shadow duration-200 ease-linear hover:shadow-lg hover:shadow-primary"
-                >
-                  <BusinessCard
-                    imageUrl={business.coverImage}
-                    name={business.name}
-                    linkUrl={`/listings/${business.id}`}
-                    location={`${business.address.city}, ${business.address.country}`}
-                    category={business.category?.name}
-                  />
-                </li>
-              ))}
-          </ul>
-        </div>
+        <BusinessGrid
+          categoryId={searchParams.categoryId}
+          page={searchParams.page}
+          sortBy={searchParams.sortBy}
+        />
       </section>
     </div>
   );

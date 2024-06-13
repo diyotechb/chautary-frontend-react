@@ -24,14 +24,7 @@ const BusinessCard = ({
       <div className="relative size-full">
         <div className="aspect-h-9 aspect-w-16 relative overflow-hidden">
           {imageUrl ? (
-            <Image
-              src={
-                "https://via.placeholder.com/380x252?text=The+Gourmet+Kitchen"
-              }
-              alt={name}
-              fill
-              className="object-cover"
-            />
+            <Image src={imageUrl} alt={name} fill className="object-cover" />
           ) : (
             <div className="flex items-center justify-center bg-muted">
               <ImageIcon className="size-16 stroke-gray-200" />
@@ -45,7 +38,7 @@ const BusinessCard = ({
         )}
       </div>
       <div className="flex w-full flex-col gap-6 p-6">
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           {category && (
             <span className="group flex items-center gap-2">
               <div className="rounded-full bg-gray-100 p-2 text-primary duration-500 group-hover:bg-primary group-hover:text-white">
