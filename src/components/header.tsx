@@ -104,10 +104,16 @@ const Header = () => {
           Dashboard <ChevronRight />
         </Button>
         <Select defaultValue={"usa"}>
-          <SelectTrigger className="w-24 text-xs font-medium tracking-wide !outline-none !ring-0 !ring-offset-0">
+          <SelectTrigger
+            className="w-20 !border-none text-xs font-semibold tracking-wide text-dark/70 !outline-none !ring-0 !ring-offset-0"
+            showChevron={false}
+          >
             <SelectValue />
           </SelectTrigger>
-          <SelectContent className="font-medium">
+          <SelectContent
+            className="z-[110] font-medium"
+            position="item-aligned"
+          >
             {REGIONS.map((region) => (
               <SelectItem
                 key={region.value}
