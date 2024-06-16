@@ -5,6 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import { FolderX, Loader } from "lucide-react";
 import BusinessCard from "../home/business-card";
 import { CategorySort } from "./category-sort";
+import { getImageofBusiness } from "@/lib/constants";
+import Pagination from "./pagination";
 
 export const BusinessGrid = ({
   categoryId,
@@ -20,7 +22,7 @@ export const BusinessGrid = ({
     queryFn: async () => {
       return BusinessService.getPaginatedBusinesses(
         page,
-        6,
+        10,
         categoryId,
         sortBy,
       );
@@ -47,7 +49,7 @@ export const BusinessGrid = ({
   }
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-8">
       <div className="flex flex-col-reverse justify-between gap-4 md:flex-row md:items-center md:gap-0">
         <p className="text-sm font-semibold text-dark">
           We found {businesses?.totalElement} listings available for you.
@@ -63,7 +65,7 @@ export const BusinessGrid = ({
               className="h-full w-full cursor-pointer rounded-md border shadow-md shadow-primary transition-shadow duration-200 ease-linear hover:shadow-lg hover:shadow-primary"
             >
               <BusinessCard
-                imageUrl={`https://chautary-images-dev.s3.amazonaws.com/business/${business.id}/bannerimage.jpg`}
+                imageUrl={getImageofBusiness(business.id)}
                 name={business.name}
                 linkUrl={`/listings/${business.id}`}
                 location={`${business.address.city}, ${business.address.country}`}
@@ -72,6 +74,11 @@ export const BusinessGrid = ({
             </li>
           ))}
       </ul>
+      {businesses?.totalPages && (
+        <div className="flex items-center justify-center pt-4">
+          <Pagination totalPages={Number(businesses?.totalPages)} />
+        </div>
+      )}
     </div>
   );
 };

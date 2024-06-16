@@ -1,7 +1,7 @@
 import { IPaginatedBusiness } from "@/types";
 import { API } from "@/utils/api";
 
-const getFeaturedBusinesses = async (pageNo = 0, pageSize = 6) => {
+const getFeaturedBusinesses = async (pageNo = 0, pageSize = 15) => {
   return API.get("/business/featured", {
     params: {
       pageNo,
@@ -12,7 +12,7 @@ const getFeaturedBusinesses = async (pageNo = 0, pageSize = 6) => {
 
 const getPaginatedBusinesses = async (
   pageNo = 1,
-  pageSize = 6,
+  pageSize = 10,
   categoryId = "",
   sortBy = "",
 ) => {

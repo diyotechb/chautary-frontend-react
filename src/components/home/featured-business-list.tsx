@@ -1,3 +1,4 @@
+import { getImageofBusiness } from "@/lib/constants";
 import { Business } from "@/types";
 import BusinessCard from "./business-card";
 
@@ -14,7 +15,7 @@ const FeaturedBusinessList = ({
           className="w-96 cursor-pointer rounded-md border shadow-md shadow-primary transition-shadow duration-200 ease-linear hover:shadow-lg hover:shadow-primary"
         >
           <BusinessCard
-            imageUrl={business.coverImage}
+            imageUrl={getImageofBusiness(business.id)}
             name={business.name}
             linkUrl={`/listings/${business.id}`}
             location={`${business.address.city},${business.address.country}`}
