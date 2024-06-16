@@ -27,7 +27,18 @@ const getPaginatedBusinesses = async (
   return business;
 };
 
+const getNearbyBusinesses = async ({
+  latitude,
+  longitude,
+}: {
+  latitude: number | null;
+  longitude: number | null;
+}) => {
+  return API.get("/business/nearby", { params: { latitude, longitude } });
+};
+
 export const BusinessService = {
   getFeaturedBusinesses,
   getPaginatedBusinesses,
+  getNearbyBusinesses,
 };

@@ -1,6 +1,10 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 type GeolocationData = {
+  isLocationAllowed: boolean;
+  loading: boolean;
   latitude: number | null;
   longitude: number | null;
   country: string | null;
@@ -8,6 +12,8 @@ type GeolocationData = {
 
 const useGeolocation = (): GeolocationData => {
   const [geolocation, setGeolocation] = useState<GeolocationData>({
+    isLocationAllowed: false,
+    loading: true,
     latitude: null,
     longitude: null,
     country: null,
@@ -33,9 +39,17 @@ const useGeolocation = (): GeolocationData => {
         const data = await response.json();
         const country = data.country;
 
-        setGeolocation({ latitude, longitude, country });
+        setGeolocation((prev) => ({
+          ...prev,
+          isLocationAllowed: true,
+          latitude,
+          longitude,
+          country,
+        }));
       } catch (error) {
-        console.error("Error fetching geolocation:", error);
+        setGeolocation((prev) => ({ ...prev, isLocationAllowed: false }));
+      } finally {
+        setGeolocation((prev) => ({ ...prev, loading: false }));
       }
     };
 

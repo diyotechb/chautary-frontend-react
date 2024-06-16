@@ -16,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import useGeolocation from "@/hooks/useGeolocation";
 
 export const NAV_LINKS = [
   {
@@ -50,6 +51,12 @@ export const REGIONS = [
 const Header = () => {
   const pathname = usePathname();
   const [showFloatingHeader, setShowFloatingHeader] = useState(false);
+  const location = useGeolocation();
+
+  console.log(location);
+  const [selectedRegion, setSelectedRegion] = useState(
+    location.country || "usa",
+  );
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 60) {
@@ -103,7 +110,10 @@ const Header = () => {
         >
           Dashboard <ChevronRight />
         </Button>
-        <Select defaultValue={"usa"}>
+        <Select
+          defaultValue={selectedRegion || "usa"}
+          onValueChange={(e) => setSelectedRegion(e)}
+        >
           <SelectTrigger
             className="w-20 !border-none text-xs font-semibold tracking-wide text-dark/70 !outline-none !ring-0 !ring-offset-0"
             showChevron={false}
@@ -118,7 +128,7 @@ const Header = () => {
               <SelectItem
                 key={region.value}
                 value={region.value}
-                className="cursor-pointer !text-xs focus:bg-primary focus:text-white"
+                className="my-1 cursor-pointer !text-xs focus:bg-primary focus:text-white"
               >
                 {region.title}
               </SelectItem>
