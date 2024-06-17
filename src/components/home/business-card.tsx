@@ -1,23 +1,24 @@
-import { BedIcon, HeartIcon, ImageIcon, MapPinned } from "lucide-react";
+import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+interface businessDescriptor {
+  icon?: React.ReactNode;
+  label?: string;
+}
 
 interface BusinessCardProps {
   imageUrl: string | null;
   name: string;
-  category?: string;
-  location?: string;
-  isFeatured?: boolean;
   linkUrl: string;
+  businessDescriptors?: businessDescriptor[];
 }
 
 const BusinessCard = ({
   name,
-  category,
   imageUrl,
-  isFeatured,
-  location,
   linkUrl,
+  businessDescriptors,
 }: BusinessCardProps) => {
   return (
     <Link href={linkUrl} className="flex flex-col items-start justify-center">
@@ -31,32 +32,25 @@ const BusinessCard = ({
             </div>
           )}
         </div>
-        {isFeatured && (
-          <div className="absolute right-6 top-6 flex size-8 items-center justify-center rounded-full bg-black/50 duration-300 hover:bg-primary">
-            <HeartIcon className="size-4 text-white" />
-          </div>
-        )}
+        {/* uncomment this to show favourite icon */}
+        {/* <div className="absolute right-6 top-6 flex size-8 items-center justify-center rounded-full bg-black/50 duration-300 hover:bg-primary">
+          <HeartIcon className="size-4 text-white" />
+        </div> */}
       </div>
       <div className="flex w-full flex-col gap-6 p-6">
-        <div className="flex flex-wrap items-center gap-4">
-          {category && (
-            <span className="group flex items-center gap-2">
-              <div className="rounded-full bg-gray-100 p-2 text-primary duration-500 group-hover:bg-primary group-hover:text-white">
-                <BedIcon className="size-4" />
-              </div>
-              <span className="text-xs font-semibold text-muted-foreground">
-                {category}
-              </span>
-            </span>
-          )}
-          <span className="group flex items-center gap-2">
-            <div className="rounded-full bg-gray-100 p-2 text-primary duration-500 group-hover:bg-primary group-hover:text-white">
-              <MapPinned className="size-4" />
-            </div>
-            <p className="text-ellipsis text-xs font-semibold text-muted-foreground">
-              {location}
-            </p>
-          </span>
+        <div className="flex flex-nowrap items-center gap-3">
+          {businessDescriptors && businessDescriptors?.length > 0
+            ? businessDescriptors.map(({ icon, label }, index) => (
+                <span key={index} className="group flex items-center gap-1">
+                  <div className="rounded-full bg-gray-100 p-2 text-primary duration-500 group-hover:bg-primary group-hover:text-white">
+                    {icon}
+                  </div>
+                  <span className="text-ellipsis text-xs font-semibold text-muted-foreground">
+                    {label}
+                  </span>
+                </span>
+              ))
+            : null}
         </div>
         <abbr
           className="line-clamp-2 w-full text-start text-base font-bold leading-relaxed no-underline"

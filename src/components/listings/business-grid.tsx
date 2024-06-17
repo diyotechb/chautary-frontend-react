@@ -2,7 +2,7 @@
 
 import { BusinessService } from "@/services";
 import { useQuery } from "@tanstack/react-query";
-import { FolderX, Loader } from "lucide-react";
+import { BedIcon, FolderX, Loader, MapPinned } from "lucide-react";
 import BusinessCard from "../home/business-card";
 import { CategorySort } from "./category-sort";
 import { getImageofBusiness } from "@/lib/constants";
@@ -56,20 +56,28 @@ export const BusinessGrid = ({
         </p>
         <CategorySort sortBy={sortBy} />
       </div>
-      <ul className="grid grid-cols-1 items-start gap-12 md:grid-cols-2">
+      <ul className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
         {businesses?.data &&
           businesses?.data.length > 0 &&
           businesses.data.map((business) => (
             <li
               key={business.name}
-              className="h-full w-full cursor-pointer rounded-md border shadow-md shadow-primary transition-shadow duration-200 ease-linear hover:shadow-lg hover:shadow-primary"
+              className="h-full w-full cursor-pointer rounded-md border shadow-brandLight transition-shadow duration-200 ease-linear hover:shadow-brand"
             >
               <BusinessCard
                 imageUrl={getImageofBusiness(business.id)}
                 name={business.name}
                 linkUrl={`/listings/${business.id}`}
-                location={`${business.address.city}, ${business.address.country}`}
-                category={business.category?.name}
+                businessDescriptors={[
+                  {
+                    icon: <BedIcon className="size-4" />,
+                    label: `${business.category?.name}`,
+                  },
+                  {
+                    icon: <MapPinned className="size-4" />,
+                    label: `${business.address.city}, ${business.address.country}`,
+                  },
+                ]}
               />
             </li>
           ))}

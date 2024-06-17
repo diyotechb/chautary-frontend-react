@@ -24,7 +24,7 @@ const Search = () => {
   });
 
   return (
-    <search className="flex h-16 w-full items-center rounded bg-white pl-8 pr-4 shadow-lg shadow-primary">
+    <search className="flex h-16 w-full items-center rounded bg-white pl-8 pr-4 shadow-brandLight focus-within:shadow-brand hover:shadow-brand">
       <div className="flex flex-1 items-center">
         <SearchIcon className="text-muted-foreground" />
         <Input

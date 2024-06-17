@@ -53,7 +53,7 @@ const ListingsPage = async ({
           <Search />
         </div>
       </section>
-      <section className="mx-auto flex w-full max-w-screen-xl flex-col justify-between gap-8 px-8 sm:flex-row">
+      <section className="mx-auto flex w-full max-w-screen-xl flex-col justify-between gap-8 px-8 md:flex-row">
         <div className="w-full md:max-w-[280px]">
           <CategoryFilter
             categoryId={searchParams.categoryId}

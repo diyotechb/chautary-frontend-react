@@ -1,5 +1,5 @@
 import { type Category } from "@/types";
-import { ImageIcon, PlusCircle } from "lucide-react";
+import { GalleryVerticalEnd, PlusCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,7 +9,7 @@ const CategoryList = ({ categories }: { categories: Category[] }) => {
       {categories.slice(0, 11).map((category) => (
         <li
           key={category.id}
-          className="h-40 w-full cursor-pointer rounded-md border px-8 shadow-md shadow-primary transition-shadow duration-200 ease-linear hover:shadow-lg hover:shadow-primary sm:w-48"
+          className="group h-40 w-full cursor-pointer rounded-md border px-8 shadow-brandLight transition-shadow duration-200 ease-linear hover:shadow-brand sm:w-48"
         >
           <Link
             href={`/listings?categoryId=${category.id}`}
@@ -24,7 +24,7 @@ const CategoryList = ({ categories }: { categories: Category[] }) => {
                 className="rounded-full"
               />
             ) : (
-              <ImageIcon className="size-10 stroke-gray-300" />
+              <GalleryVerticalEnd className="size-10 stroke-gray-300 duration-500 group-hover:animate-bounce-back group-hover:stroke-primary" />
             )}
 
             <p className="max-w-36 overflow-hidden text-ellipsis text-nowrap text-start text-base font-semibold leading-relaxed">
@@ -33,7 +33,7 @@ const CategoryList = ({ categories }: { categories: Category[] }) => {
           </Link>
         </li>
       ))}
-      <li className="h-40 w-full cursor-pointer rounded-md bg-primary px-8 text-white shadow-md shadow-primary transition-shadow duration-200 ease-linear hover:shadow-lg hover:shadow-primary sm:w-48">
+      <li className="h-40 w-full cursor-pointer rounded-md bg-primary px-8 text-white shadow-brandLight transition-shadow duration-200 ease-linear hover:shadow-brand sm:w-48">
         <Link
           href={"/listings"}
           className="flex h-full w-full flex-col items-center justify-center gap-4"
