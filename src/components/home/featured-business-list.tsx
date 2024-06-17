@@ -12,7 +12,7 @@ const FeaturedBusinessList = ({
       {featuredBusinesses.map((business) => (
         <li
           key={business.name}
-          className="w-96 cursor-pointer rounded-md border shadow-md shadow-primary transition-shadow duration-200 ease-linear hover:shadow-lg hover:shadow-primary"
+          className="cursor-pointer rounded-md border shadow-md shadow-primary transition-shadow duration-200 ease-linear hover:shadow-lg hover:shadow-primary"
         >
           <BusinessCard
             imageUrl={getImageofBusiness(business.id)}

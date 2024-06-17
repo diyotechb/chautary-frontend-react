@@ -7,7 +7,7 @@ type GeolocationData = {
   loading: boolean;
   latitude: number | null;
   longitude: number | null;
-  country: string | null;
+  // country: string | null;
 };
 
 const useGeolocation = (): GeolocationData => {
@@ -16,7 +16,7 @@ const useGeolocation = (): GeolocationData => {
     loading: true,
     latitude: null,
     longitude: null,
-    country: null,
+    // country: null,
   });
 
   useEffect(() => {
@@ -33,18 +33,18 @@ const useGeolocation = (): GeolocationData => {
 
         const { latitude, longitude } = position.coords;
 
-        const response = await fetch(
-          `https://geocode.xyz/${latitude},${longitude}?json=1`,
-        );
-        const data = await response.json();
-        const country = data.country;
+        // const response = await fetch(
+        //   `https://geocode.xyz/${latitude},${longitude}?json=1`,
+        // );
+        // const data = await response.json();
+        // const country = data.country;
 
         setGeolocation((prev) => ({
           ...prev,
           isLocationAllowed: true,
           latitude,
           longitude,
-          country,
+          // country,
         }));
       } catch (error) {
         setGeolocation((prev) => ({ ...prev, isLocationAllowed: false }));
