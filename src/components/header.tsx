@@ -16,7 +16,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import useGeolocation from "@/hooks/useGeolocation";
 
 export const NAV_LINKS = [
   {
@@ -51,12 +50,7 @@ export const REGIONS = [
 const Header = () => {
   const pathname = usePathname();
   const [showFloatingHeader, setShowFloatingHeader] = useState(false);
-  const location = useGeolocation();
-
-  console.log(location);
-  const [selectedRegion, setSelectedRegion] = useState(
-    location.country || "usa",
-  );
+  const [selectedRegion, setSelectedRegion] = useState("usa");
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 60) {
