@@ -61,6 +61,10 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        brand: "3px 3px 2px 3px #0ec6c6",
+        brandLight: "3px 3px 2px 3px #b2eaea",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
