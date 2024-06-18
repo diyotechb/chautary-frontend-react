@@ -12,6 +12,7 @@ const ListingsPage = async ({
     categoryId?: string;
     sortBy?: string;
     page?: number;
+    searchKeyword?: string;
   };
 }) => {
   const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const ListingsPage = async ({
     ],
     queryFn: () => {
       return BusinessService.getPaginatedBusinesses(
+        searchParams.searchKeyword,
         searchParams.page,
         6,
         searchParams.categoryId,
@@ -50,7 +52,11 @@ const ListingsPage = async ({
           <h1 className="text-center text-3xl font-bold">
             Find Popular Businesses
           </h1>
-          <Search />
+          <Search
+            categoryId={searchParams?.categoryId}
+            searchKeyword={searchParams?.searchKeyword}
+            categories={categories}
+          />
         </div>
       </section>
       <section className="mx-auto flex w-full max-w-screen-xl flex-col justify-between gap-8 px-8 md:flex-row">

@@ -1,8 +1,9 @@
 "use client";
 
-import { LISTINGS } from "@/lib/listings";
 import { cn } from "@/lib/utils";
+import { type Category } from "@/types";
 import { Check, ChevronDown, List, SearchIcon } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { Button } from "./ui/button";
 import {
@@ -16,18 +17,47 @@ import {
 import { Input } from "./ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
-const Search = () => {
+interface SearchProps {
+  categories?: Category[];
+  searchKeyword?: string;
+  categoryId?: string;
+}
+
+const Search: React.FC<SearchProps> = ({
+  categories,
+  searchKeyword,
+  categoryId,
+}) => {
+  const { push } = useRouter();
+  const searchParams = useSearchParams();
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState({
-    id: "",
+  const [searchValue, setSearchValue] = React.useState(searchKeyword || "");
+  const [selectedCategory, setSelectedCategory] = React.useState<
+    Pick<Category, "id" | "name">
+  >({
+    id: Number(categoryId) || 0,
     name: "",
   });
+
+  const searchHandler = () => {
+    const params = new URLSearchParams(searchParams);
+    if (selectedCategory.id) {
+      params.set("categoryId", selectedCategory.id.toString());
+    }
+    if (searchValue) {
+      params.set("searchKeyword", searchValue);
+    }
+    push(`/listings?${params.toString()}`);
+  };
 
   return (
     <search className="flex h-16 w-full items-center rounded bg-white pl-8 pr-4 shadow-brandLight focus-within:shadow-brand hover:shadow-brand">
       <div className="flex flex-1 items-center">
         <SearchIcon className="text-muted-foreground" />
         <Input
+          value={searchValue}
+          defaultValue={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
           placeholder="What are you looking for ?"
           className="h-full flex-1 !border-none text-base font-medium text-dark !outline-none !ring-0 !ring-offset-0"
         />
@@ -41,12 +71,10 @@ const Search = () => {
           >
             <span className="flex items-center gap-4">
               <List className="shrink-0 text-muted-foreground" />
-              {value.id ? (
+              {selectedCategory.id ? (
                 <p className="w-full max-w-[180px] overflow-hidden text-ellipsis">
-                  {
-                    LISTINGS.find((listing) => listing.name === value.name)
-                      ?.name
-                  }
+                  {categories?.find((item) => item.id === selectedCategory.id)
+                    ?.name || selectedCategory.name}
                 </p>
               ) : (
                 <span className="text-muted-foreground">Select</span>
@@ -60,20 +88,20 @@ const Search = () => {
             />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="h-64 w-[200px] p-0" side="bottom">
+        <PopoverContent className="h-64 p-0" side="bottom">
           <Command>
             <CommandInput placeholder="" />
             <CommandList>
               <CommandEmpty>No categories found.</CommandEmpty>
               <CommandGroup>
-                {LISTINGS.map((listing) => (
+                {categories?.map((item) => (
                   <CommandItem
-                    key={listing.id}
-                    value={listing.name}
+                    key={item.id}
+                    value={item.name}
                     onSelect={(currentValue) => {
-                      setValue((prev) => ({
+                      setSelectedCategory((prev) => ({
                         ...prev,
-                        id: listing.id,
+                        id: item.id,
                         name: currentValue,
                       }));
                       setOpen(false);
@@ -83,10 +111,12 @@ const Search = () => {
                     <Check
                       className={cn(
                         "mr-2 h-4 w-4",
-                        value.id === listing.id ? "opacity-100" : "opacity-0",
+                        selectedCategory.id === item.id
+                          ? "opacity-100"
+                          : "opacity-0",
                       )}
                     />
-                    {listing.name}
+                    {item.name}
                   </CommandItem>
                 ))}
               </CommandGroup>
@@ -94,7 +124,10 @@ const Search = () => {
           </Command>
         </PopoverContent>
       </Popover>
-      <Button className="py-6 font-bold duration-300 hover:bg-dark">
+      <Button
+        className="py-6 font-bold duration-300 hover:bg-dark"
+        onClick={searchHandler}
+      >
         Search Now
       </Button>
     </search>

@@ -11,6 +11,7 @@ const getFeaturedBusinesses = async (pageNo = 0, pageSize = 15) => {
 };
 
 const getPaginatedBusinesses = async (
+  searchKeyword = "",
   pageNo = 1,
   pageSize = 10,
   categoryId = "",
@@ -18,6 +19,7 @@ const getPaginatedBusinesses = async (
 ) => {
   const business: IPaginatedBusiness = await API.get("/business/paginated", {
     params: {
+      searchKeyword,
       pageNo,
       pageSize,
       categoryId,
