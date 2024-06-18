@@ -12,6 +12,7 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import Image from "next/image";
+import { Suspense } from "react";
 
 export default async function Home() {
   const queryClient = new QueryClient();
@@ -59,7 +60,9 @@ export default async function Home() {
               occasion, right here, right now.
             </p>
           </div>
-          <Search categories={categories} currentPathname="/" />
+          <Suspense>
+            <Search categories={categories} currentPathname="/" />
+          </Suspense>
         </section>
       </div>
       {categories && (
