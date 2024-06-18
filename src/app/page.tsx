@@ -46,15 +46,15 @@ export default async function Home() {
           draggable={false}
           priority
         />
-        <section className="ml-40 mt-52 flex w-1/2 flex-col gap-8">
+        <section className="mx-auto mt-32 flex w-full flex-col gap-8 px-2 sm:mx-20 lg:w-2/3 xl:ml-40 xl:mt-52 xl:w-1/2">
           <div className="w-full">
-            <h3 className="flex space-x-2 text-wrap text-start text-[50px] font-bold leading-relaxed">
+            <div className="flex space-x-2 text-wrap text-start text-3xl font-bold leading-relaxed sm:text-4xl xl:text-[50px]">
               <span>Find</span>
-              <span className="text-primary">
+              <span className="!break-words text-primary">
                 <TypeWriterComponent />
               </span>
-            </h3>
-            <p className="text-start text-lg text-[#666]">
+            </div>
+            <p className="mt-2 text-start text-base text-[#666] sm:mt-4 sm:text-lg">
               Explore your favorites effortlessly! Find businesses for every
               occasion, right here, right now.
             </p>

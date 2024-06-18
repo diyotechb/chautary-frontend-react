@@ -69,8 +69,8 @@ const Search: React.FC<SearchProps> = ({
   }, [searchKeyword, categoryId]);
 
   return (
-    <search className="flex h-16 w-full items-center rounded bg-white pl-8 pr-4 shadow-brandLight focus-within:shadow-brand hover:shadow-brand">
-      <div className="flex flex-1 items-center">
+    <search className="flex min-h-fit w-full flex-wrap items-center justify-center gap-4 rounded bg-white p-4 shadow-brandLight duration-500 focus-within:shadow-brand hover:shadow-brand xl:h-16 xl:p-0 xl:pl-8 xl:pr-4">
+      <div className="flex w-full flex-1 items-center md:min-w-[300px]">
         <SearchIcon className="text-muted-foreground" />
         <Input
           value={searchValue}
@@ -80,12 +80,12 @@ const Search: React.FC<SearchProps> = ({
           className="h-full flex-1 !border-none text-base font-medium text-dark !outline-none !ring-0 !ring-offset-0"
         />
       </div>
-      <div className="h-full w-0.5 bg-primary" />
+      {/* <div className="h-full w-0.5 bg-primary" /> */}
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
-            className="h-full w-1/3 justify-between !border-none !bg-transparent text-base !outline-none !ring-0 !ring-offset-0"
+            className="w-full justify-between !border-none !bg-transparent p-0 text-base !outline-none !ring-0 !ring-offset-0 xl:w-1/3"
           >
             <span className="flex w-full items-center gap-4">
               <List className="shrink-0 text-muted-foreground" />
@@ -154,7 +154,7 @@ const Search: React.FC<SearchProps> = ({
         </PopoverContent>
       </Popover>
       <Button
-        className="py-6 font-bold duration-300 hover:bg-dark"
+        className="w-full py-6 font-bold duration-300 hover:bg-dark xl:w-fit"
         onClick={searchHandler}
       >
         Search Now
