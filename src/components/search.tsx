@@ -2,9 +2,9 @@
 
 import { cn } from "@/lib/utils";
 import { type Category } from "@/types";
-import { Check, ChevronDown, List, SearchIcon } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import { Check, ChevronDown, List, SearchIcon, XCircle } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect } from "react";
 import { Button } from "./ui/button";
 import {
   Command,
@@ -21,21 +21,24 @@ interface SearchProps {
   categories?: Category[];
   searchKeyword?: string;
   categoryId?: string;
+  currentPathname?: string;
 }
 
 const Search: React.FC<SearchProps> = ({
   categories,
   searchKeyword,
   categoryId,
+  currentPathname,
 }) => {
   const { push } = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
-  const [searchValue, setSearchValue] = React.useState(searchKeyword || "");
+  const [searchValue, setSearchValue] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState<
     Pick<Category, "id" | "name">
   >({
-    id: Number(categoryId) || 0,
+    id: 0,
     name: "",
   });
 
@@ -49,6 +52,21 @@ const Search: React.FC<SearchProps> = ({
     }
     push(`/listings?${params.toString()}`);
   };
+
+  const clearSearchFilter = () => {
+    const params = new URLSearchParams(searchParams);
+    params.delete("categoryId");
+    push(`${currentPathname ?? pathname}?${params.toString()}`);
+  };
+
+  useEffect(() => {
+    setSearchValue(searchKeyword || "");
+    if (searchKeyword) {
+      setSelectedCategory({ id: Number(categoryId) || 0, name: "" });
+    } else {
+      setSelectedCategory({ id: 0, name: "" });
+    }
+  }, [searchKeyword, categoryId]);
 
   return (
     <search className="flex h-16 w-full items-center rounded bg-white pl-8 pr-4 shadow-brandLight focus-within:shadow-brand hover:shadow-brand">
@@ -69,13 +87,24 @@ const Search: React.FC<SearchProps> = ({
             variant="outline"
             className="h-full w-1/3 justify-between !border-none !bg-transparent text-base !outline-none !ring-0 !ring-offset-0"
           >
-            <span className="flex items-center gap-4">
+            <span className="flex w-full items-center gap-4">
               <List className="shrink-0 text-muted-foreground" />
               {selectedCategory.id ? (
-                <p className="w-full max-w-[180px] overflow-hidden text-ellipsis">
-                  {categories?.find((item) => item.id === selectedCategory.id)
-                    ?.name || selectedCategory.name}
-                </p>
+                <div className="flex w-full items-center justify-between">
+                  <p className="w-full max-w-[180px] overflow-hidden text-ellipsis text-start">
+                    {categories?.find((item) => item.id === selectedCategory.id)
+                      ?.name || selectedCategory.name}
+                  </p>
+                  <XCircle
+                    className="mr-4 size-4 text-neutral-500 duration-300 hover:text-destructive"
+                    aria-label="clear category filter"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedCategory({ id: 0, name: "" });
+                      clearSearchFilter();
+                    }}
+                  />
+                </div>
               ) : (
                 <span className="text-muted-foreground">Select</span>
               )}

@@ -59,7 +59,7 @@ export default async function Home() {
               occasion, right here, right now.
             </p>
           </div>
-          <Search categories={categories} />
+          <Search categories={categories} currentPathname="/" />
         </section>
       </div>
       {categories && (

@@ -18,6 +18,8 @@ const CategoryFilter = ({
 
   function categoryFilterHandler(id: string) {
     const searchParams = new URLSearchParams(params);
+    searchParams.delete("searchKeyword");
+    searchParams.delete("page");
     if (Number(id) < 1) {
       searchParams.delete("categoryId");
       replace(`${pathname}?${searchParams.toString()}`);
