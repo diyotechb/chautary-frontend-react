@@ -12,15 +12,18 @@ export const BusinessGrid = ({
   categoryId,
   page,
   sortBy,
+  searchKeyword,
 }: {
   categoryId?: string;
   sortBy?: string;
   page?: number;
+  searchKeyword?: string;
 }) => {
   const { data: businesses, isLoading } = useQuery({
-    queryKey: ["paginatedBusinesses", categoryId, sortBy, page],
+    queryKey: ["paginatedBusinesses", categoryId, sortBy, page, searchKeyword],
     queryFn: async () => {
       return BusinessService.getPaginatedBusinesses(
+        searchKeyword,
         page,
         10,
         categoryId,

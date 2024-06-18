@@ -3,7 +3,11 @@ import CategoryFilter from "@/components/listings/category-filter";
 import Search from "@/components/search";
 import { BusinessService, CategoriesService } from "@/services";
 import { type Category } from "@/types";
-import { QueryClient } from "@tanstack/react-query";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
 
 const ListingsPage = async ({
   searchParams,
@@ -33,6 +37,7 @@ const ListingsPage = async ({
       searchParams.categoryId,
       searchParams.sortBy,
       searchParams.page,
+      searchParams.searchKeyword,
     ],
     queryFn: () => {
       return BusinessService.getPaginatedBusinesses(
@@ -66,11 +71,14 @@ const ListingsPage = async ({
             categories={categories}
           />
         </div>
-        <BusinessGrid
-          categoryId={searchParams.categoryId}
-          page={searchParams.page}
-          sortBy={searchParams.sortBy}
-        />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <BusinessGrid
+            categoryId={searchParams.categoryId}
+            page={searchParams.page}
+            sortBy={searchParams.sortBy}
+            searchKeyword={searchParams.searchKeyword}
+          />
+        </HydrationBoundary>
       </section>
     </div>
   );
