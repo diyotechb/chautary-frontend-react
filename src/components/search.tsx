@@ -74,7 +74,6 @@ const Search: React.FC<SearchProps> = ({
         <SearchIcon className="text-muted-foreground" />
         <Input
           value={searchValue}
-          defaultValue={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           placeholder="What are you looking for ?"
           className="h-full flex-1 !border-none text-base font-medium text-dark !outline-none !ring-0 !ring-offset-0"
