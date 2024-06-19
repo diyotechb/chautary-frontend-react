@@ -38,6 +38,7 @@ const ListingsPage = async ({
       searchParams.sortBy,
       searchParams.page,
       searchParams.searchKeyword,
+      "USA",
     ],
     queryFn: () => {
       return BusinessService.getPaginatedBusinesses(

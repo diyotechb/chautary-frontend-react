@@ -7,6 +7,7 @@ import BusinessCard from "../home/business-card";
 import { CategorySort } from "./category-sort";
 import { getImageofBusiness } from "@/lib/constants";
 import Pagination from "./pagination";
+import { getFromLocalStorage } from "@/utils/storage.utils";
 
 export const BusinessGrid = ({
   categoryId,
@@ -19,8 +20,16 @@ export const BusinessGrid = ({
   page?: number;
   searchKeyword?: string;
 }) => {
+  const country = getFromLocalStorage("country") ?? "USA";
   const { data: businesses, isLoading } = useQuery({
-    queryKey: ["paginatedBusinesses", categoryId, sortBy, page, searchKeyword],
+    queryKey: [
+      "paginatedBusinesses",
+      categoryId,
+      sortBy,
+      page,
+      searchKeyword,
+      country,
+    ],
     queryFn: async () => {
       return BusinessService.getPaginatedBusinesses(
         searchKeyword,
