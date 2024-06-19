@@ -1,7 +1,7 @@
 import { IPaginatedBusiness } from "@/types";
 import { API } from "@/utils/api";
 
-const getFeaturedBusinesses = async (pageNo = 0, pageSize = 15) => {
+const getFeaturedBusinesses = async (pageNo = 1, pageSize = 9) => {
   return API.get("/business/featured", {
     params: {
       pageNo,
