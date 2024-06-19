@@ -70,7 +70,7 @@ const Search: React.FC<SearchProps> = ({
 
   return (
     <search className="flex min-h-fit w-full flex-wrap items-center justify-center gap-4 rounded bg-white p-4 shadow-brandLight duration-500 focus-within:shadow-brand hover:shadow-brand xl:h-16 xl:p-0 xl:pl-8 xl:pr-4">
-      <div className="flex w-full flex-1 items-center md:min-w-[300px]">
+      <div className="flex w-full flex-1 items-center">
         <SearchIcon className="text-muted-foreground" />
         <Input
           value={searchValue}

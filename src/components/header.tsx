@@ -2,20 +2,17 @@
 
 import { isActive } from "@/lib/pathname-util";
 import { cn } from "@/lib/utils";
-import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import HeaderDrawerMobile from "./header-drawer-mobile";
-import { Button } from "./ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
+import dynamic from "next/dynamic";
+// import CountrySelector from "./country-selector";
+
+const CountrySelector = dynamic(() => import("./country-selector"), {
+  ssr: false,
+});
 
 export const NAV_LINKS = [
   {
@@ -50,7 +47,7 @@ export const REGIONS = [
 const Header = () => {
   const pathname = usePathname();
   const [showFloatingHeader, setShowFloatingHeader] = useState(false);
-  const [selectedRegion, setSelectedRegion] = useState("usa");
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 60) {
@@ -98,37 +95,14 @@ const Header = () => {
         </ul>
       </nav>
       <div className="hidden items-center justify-center gap-8 lg:flex">
-        <Button
+        {/* hide dashboard button */}
+        {/* <Button
           variant="outline"
           className="rounded-full border border-primary px-8 py-6 text-primary !ring-0 duration-500 hover:bg-primary hover:text-white"
         >
           Dashboard <ChevronRight />
-        </Button>
-        <Select
-          defaultValue={selectedRegion || "usa"}
-          onValueChange={(e) => setSelectedRegion(e)}
-        >
-          <SelectTrigger
-            className="w-20 !border-none text-xs font-semibold tracking-wide text-dark/70 !outline-none !ring-0 !ring-offset-0"
-            showChevron={false}
-          >
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent
-            className="z-[110] font-medium"
-            position="item-aligned"
-          >
-            {REGIONS.map((region) => (
-              <SelectItem
-                key={region.value}
-                value={region.value}
-                className="my-1 cursor-pointer !text-xs focus:bg-primary focus:text-white"
-              >
-                {region.title}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        </Button> */}
+        <CountrySelector />
       </div>
       <HeaderDrawerMobile />
     </header>

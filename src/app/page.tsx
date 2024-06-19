@@ -1,4 +1,3 @@
-import Business from "@/components/home/business";
 import CategorySectionWithHeader from "@/components/home/categories";
 import CategoryList from "@/components/home/category-list";
 import { HowItWorks } from "@/components/home/how-it-works";
@@ -11,9 +10,13 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { Suspense } from "react";
 
+const Business = dynamic(() => import("@/components/home/business"), {
+  ssr: false,
+});
 export default async function Home() {
   const queryClient = new QueryClient();
 
@@ -47,7 +50,7 @@ export default async function Home() {
           draggable={false}
           priority
         />
-        <section className="mx-auto mt-32 flex w-full flex-col gap-8 px-2 sm:mx-20 lg:w-2/3 xl:ml-40 xl:mt-52 xl:w-1/2">
+        <section className="mx-auto mt-32 flex w-full flex-col gap-8 px-2 lg:mx-20 lg:mt-52 lg:max-w-[900px] xl:ml-40">
           <div className="w-full">
             <div className="flex space-x-2 text-wrap text-start text-3xl font-bold leading-relaxed sm:text-4xl xl:text-[50px]">
               <span>Find</span>

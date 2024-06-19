@@ -1,19 +1,12 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronRight, Menu, XIcon } from "lucide-react";
+import { Menu, XIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { NAV_LINKS, REGIONS } from "./header";
-import { Button } from "./ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
+import CountrySelector from "./country-selector";
+import { NAV_LINKS } from "./header";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 const HeaderDrawerMobile = () => {
@@ -56,28 +49,13 @@ const HeaderDrawerMobile = () => {
           </ul>
         </nav>
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Button
+          {/* <Button
             variant="outline"
             className="rounded-full border border-primary px-8 py-6 text-primary duration-500 hover:bg-primary hover:text-white"
           >
             Dashboard <ChevronRight />
-          </Button>
-          <Select defaultValue={"usa"}>
-            <SelectTrigger className="w-24 px-2 text-xs font-medium tracking-wide !outline-none !ring-0 !ring-offset-0">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent className="font-medium">
-              {REGIONS.map((region) => (
-                <SelectItem
-                  key={region.value}
-                  value={region.value}
-                  className="cursor-pointer !text-xs focus:bg-primary focus:text-white"
-                >
-                  {region.title}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          </Button> */}
+          <CountrySelector />
         </div>
       </SheetContent>
     </Sheet>

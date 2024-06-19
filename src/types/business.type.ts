@@ -54,3 +54,8 @@ export interface IPaginatedBusiness {
   totalPages: number;
   totalElement: number;
 }
+
+export interface BusinessCountry {
+  name: string;
+  alpha3Code: string;
+}

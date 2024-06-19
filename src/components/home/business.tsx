@@ -10,12 +10,14 @@ import Link from "next/link";
 import { Shimmer } from "../shimmers/shimmer";
 import BusinessCard from "./business-card";
 import CategorySectionWithHeader from "./categories";
+import { getFromLocalStorage } from "@/utils/storage.utils";
 
 const Business = () => {
+  const country = getFromLocalStorage("country") ?? "USA";
   const { isLocationAllowed, latitude, longitude } = useGeolocation();
   const { data: featuredBusinesses, isLoading: isFetchingFeaturedBusiness } =
     useQuery<Business[]>({
-      queryKey: ["featuredBusinesses"],
+      queryKey: ["featuredBusinesses", country],
       queryFn: () =>
         BusinessService.getFeaturedBusinesses().then((res) => res.data),
       enabled: !isLocationAllowed,
