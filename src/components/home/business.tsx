@@ -109,7 +109,7 @@ const Business = () => {
                             },
                             {
                               icon: <MapPinned className="size-4" />,
-                              label: `${business.address.city},${business.address.country}`,
+                              label: `${business.address.city}, ${business.address.state}`,
                             },
                           ]}
                         />
