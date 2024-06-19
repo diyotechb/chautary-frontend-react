@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import HeaderDrawerMobile from "./header-drawer-mobile";
 import dynamic from "next/dynamic";
-// import CountrySelector from "./country-selector";
 
 const CountrySelector = dynamic(() => import("./country-selector"), {
   ssr: false,
@@ -75,7 +74,7 @@ const Header = () => {
           height={45}
           width={130}
           alt="chautary"
-          className="shrink-0 object-contain"
+          className="h-full w-full shrink-0 object-contain"
           quality={100}
         />
       </Link>

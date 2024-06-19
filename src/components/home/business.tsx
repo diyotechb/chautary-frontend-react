@@ -57,7 +57,7 @@ const Business = () => {
                 {nearbyBusinesses && nearbyBusinesses?.length > 0
                   ? nearbyBusinesses.map((business) => (
                       <li
-                        key={business.name}
+                        key={`{business.name}_${business.id}`}
                         className="cursor-pointer rounded-md border shadow-brandLight transition-shadow duration-200 ease-linear hover:shadow-brand"
                       >
                         <BusinessCard

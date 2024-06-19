@@ -37,13 +37,15 @@ const getPaginatedBusinesses = async (
 const getNearbyBusinesses = async ({
   latitude,
   longitude,
+  count = 9,
 }: {
   latitude: number | null;
   longitude: number | null;
+  count?: number;
 }) => {
   const countryCode = localStorage.getItem("country") ?? "USA";
   return API.get("/business/nearby", {
-    params: { latitude, longitude, countryCode },
+    params: { latitude, longitude, countryCode, count },
   });
 };
 
