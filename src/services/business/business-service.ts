@@ -1,4 +1,3 @@
-"use client";
 import { IPaginatedBusiness } from "@/types";
 import { API } from "@/utils/api";
 
@@ -53,9 +52,14 @@ const getBusinessCountries = async () => {
   return API.get("/business/countries");
 };
 
+const getBusinessByID = async (id: string) => {
+  return API.get(`/business/${id}`);
+};
+
 export const BusinessService = {
   getFeaturedBusinesses,
   getPaginatedBusinesses,
   getNearbyBusinesses,
   getBusinessCountries,
+  getBusinessByID,
 };

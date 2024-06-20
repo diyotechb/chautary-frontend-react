@@ -1,8 +1,8 @@
 import { Category } from "./category.type";
 
-interface Address {
+export interface Address {
   id: number;
-  street: string;
+  streetAddress: string;
   city: string;
   state: string;
   zipCode: string;

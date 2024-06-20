@@ -21,7 +21,11 @@ const BusinessCard = ({
   businessDescriptors,
 }: BusinessCardProps) => {
   return (
-    <Link href={linkUrl} className="flex flex-col items-start justify-center">
+    <Link
+      href={linkUrl}
+      className="flex flex-col items-start justify-center"
+      prefetch={false}
+    >
       <div className="relative size-full">
         <div className="aspect-h-9 aspect-w-16 relative overflow-hidden">
           {imageUrl ? (
