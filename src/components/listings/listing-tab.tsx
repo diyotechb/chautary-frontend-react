@@ -90,11 +90,7 @@ const ListingTab = ({ businessId }: { businessId: string }) => {
             </p>
           </ListingTitleContent>
           <ListingTitleContent title="Gallery">
-            <Carousel
-              opts={{
-                slidesToScroll: 2,
-              }}
-            >
+            <Carousel>
               <CarouselContent>
                 {[1, 2, 3, 4, 5].map((i) => (
                   <CarouselItem
@@ -122,11 +118,7 @@ const ListingTab = ({ businessId }: { businessId: string }) => {
               ) : (
                 <div className="inline-flex w-full flex-col">
                   {nearbyBusinesses && nearbyBusinesses?.length > 0 ? (
-                    <Carousel
-                      opts={{
-                        slidesToScroll: 2,
-                      }}
-                    >
+                    <Carousel>
                       <CarouselContent className="my-4 mr-4">
                         {nearbyBusinesses.map((business) => (
                           <CarouselItem
