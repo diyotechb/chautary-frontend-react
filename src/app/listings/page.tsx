@@ -1,4 +1,3 @@
-import { BusinessGrid } from "@/components/listings/business-grid";
 import Search from "@/components/search";
 import { BusinessService, CategoriesService } from "@/services";
 import { type Category } from "@/types";
@@ -7,12 +6,28 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import { Loader } from "lucide-react";
 import dynamic from "next/dynamic";
 
 const CategoryFilter = dynamic(
   () => import("@/components/listings/category-filter"),
   {
     ssr: false,
+  },
+);
+
+const BusinessGrid = dynamic(
+  () =>
+    import("@/components/listings/business-grid").then(
+      (mod) => mod.BusinessGrid,
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex w-full items-center justify-center md:h-[72vh]">
+        <Loader className="size-6 animate-spin stroke-dark" />
+      </div>
+    ),
   },
 );
 

@@ -8,9 +8,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import HeaderDrawerMobile from "./header-drawer-mobile";
 import dynamic from "next/dynamic";
+import { Shimmer } from "./shimmers/shimmer";
 
 const CountrySelector = dynamic(() => import("./country-selector"), {
   ssr: false,
+  loading: () => <Shimmer className="h-10 w-36" />,
 });
 
 export const NAV_LINKS = [
