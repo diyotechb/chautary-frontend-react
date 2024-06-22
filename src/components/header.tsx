@@ -28,21 +28,6 @@ export const NAV_LINKS = [
   },
 ];
 
-export const REGIONS = [
-  {
-    title: "UK",
-    value: "uk",
-  },
-  {
-    title: "USA",
-    value: "usa",
-  },
-  {
-    title: "Australia",
-    value: "aus",
-  },
-];
-
 const Header = () => {
   const pathname = usePathname();
   const [showFloatingHeader, setShowFloatingHeader] = useState(false);
@@ -74,7 +59,7 @@ const Header = () => {
           height={45}
           width={130}
           alt="chautary"
-          className="h-full w-full shrink-0 object-contain"
+          className="shrink-0 object-contain"
           quality={100}
         />
       </Link>

@@ -1,5 +1,4 @@
 import { BusinessGrid } from "@/components/listings/business-grid";
-import CategoryFilter from "@/components/listings/category-filter";
 import Search from "@/components/search";
 import { BusinessService, CategoriesService } from "@/services";
 import { type Category } from "@/types";
@@ -8,6 +7,14 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import dynamic from "next/dynamic";
+
+const CategoryFilter = dynamic(
+  () => import("@/components/listings/category-filter"),
+  {
+    ssr: false,
+  },
+);
 
 const ListingsPage = async ({
   searchParams,
