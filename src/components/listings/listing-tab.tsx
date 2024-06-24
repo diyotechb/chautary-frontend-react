@@ -191,7 +191,8 @@ const ListingTab = ({ businessId }: { businessId: string }) => {
           <div className="flex items-center space-x-4 py-4 text-sm">
             <MapPin className="size-5 text-neutral-500" />
             <p className="text-xs font-semibold">
-              {(business?.address.state, business?.address.country)}
+              {business?.address?.city || business?.address.state},&nbsp;
+              {business?.address?.country}
             </p>
           </div>
         </article>
