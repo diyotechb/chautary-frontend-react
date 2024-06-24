@@ -162,15 +162,13 @@ const ListingTab = ({ businessId }: { businessId: string }) => {
           <h4 className="pb-5 text-xl font-semibold">Contact Details</h4>
           <div className="flex items-center space-x-4 py-4 text-sm">
             <GlobeIcon className="size-5 text-neutral-500" />
-            {business?.website && (
-              <a
-                target="_blank"
-                href={business.website}
-                className="text-xs font-semibold text-primary hover:underline"
-              >
-                {business.website}
-              </a>
-            )}
+            <a
+              target="_blank"
+              href={business?.website || ""}
+              className="text-xs font-semibold text-primary hover:underline"
+            >
+              {business?.website || "website"}
+            </a>
           </div>
           <div className="flex items-center space-x-4 py-4 text-sm">
             <PhoneCall className="size-5 text-neutral-500" />
@@ -178,15 +176,13 @@ const ListingTab = ({ businessId }: { businessId: string }) => {
           </div>
           <div className="flex items-center space-x-4 py-4 text-sm">
             <Waypoints className="size-5 text-neutral-500" />
-            {business?.website && (
-              <a
-                target="_blank"
-                href={business.website}
-                className="text-xs font-semibold text-primary hover:underline"
-              >
-                Get Directions
-              </a>
-            )}
+            <a
+              target="_blank"
+              href={`http://www.google.com/maps/place/${business?.address?.latitude},${business?.address?.longitude}/@${business?.address?.latitude},${business?.address?.longitude},20z`}
+              className="text-xs font-semibold text-primary hover:underline"
+            >
+              Get Directions
+            </a>
           </div>
           <div className="flex items-center space-x-4 py-4 text-sm">
             <MapPin className="size-5 text-neutral-500" />
