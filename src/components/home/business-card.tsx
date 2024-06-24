@@ -1,6 +1,8 @@
+import { cn } from "@/lib/utils";
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 interface businessDescriptor {
   icon?: React.ReactNode;
@@ -20,6 +22,7 @@ const BusinessCard = ({
   linkUrl,
   businessDescriptors,
 }: BusinessCardProps) => {
+  const [imageError, setImageError] = useState(false);
   return (
     <Link
       href={linkUrl}
@@ -30,11 +33,18 @@ const BusinessCard = ({
         <div className="aspect-h-9 aspect-w-16 relative overflow-hidden">
           {imageUrl ? (
             <Image
-              src={imageUrl}
+              src={imageError ? "/assets/img/placeholder-image.png" : imageUrl}
               alt={name}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover"
+              className={cn(
+                "object-cover",
+                imageError &&
+                  "pointer-events-none scale-50 object-contain opacity-30 grayscale",
+              )}
+              onError={() => {
+                setImageError(true);
+              }}
             />
           ) : (
             <div className="flex items-center justify-center bg-muted">
