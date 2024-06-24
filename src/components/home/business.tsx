@@ -24,7 +24,7 @@ const Business = () => {
     });
   const { data: nearbyBusinesses, isLoading: isFetchingNearbyBusiness } =
     useQuery<Business[]>({
-      queryKey: ["nearbyBusinesses"],
+      queryKey: ["nearbyBusinesses", country],
       queryFn: () =>
         BusinessService.getNearbyBusinesses({ latitude, longitude }).then(
           (res) => res.data,
