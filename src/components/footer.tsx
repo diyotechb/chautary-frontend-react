@@ -6,10 +6,10 @@ const FOOTER_LINKS = [
   {
     section: "About",
     links: [
-      {
-        title: "About us",
-        link: "/about",
-      },
+      // {
+      //   title: "About us",
+      //   link: "/about",
+      // },
       {
         title: "Business",
         link: "/listings",
