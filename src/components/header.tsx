@@ -12,7 +12,7 @@ import { Shimmer } from "./shimmers/shimmer";
 
 const CountrySelector = dynamic(() => import("./country-selector"), {
   ssr: false,
-  loading: () => <Shimmer className="h-10 w-36" />,
+  loading: () => <Shimmer className="h-10 w-44" />,
 });
 
 export const NAV_LINKS = [
@@ -24,10 +24,10 @@ export const NAV_LINKS = [
     title: "Business",
     link: "/listings",
   },
-  {
-    title: "About us",
-    link: "/about",
-  },
+  // {
+  //   title: "About us",
+  //   link: "/about",
+  // },
 ];
 
 const Header = () => {

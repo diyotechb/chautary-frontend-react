@@ -13,6 +13,7 @@ import { BusinessCountry } from "@/types";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
+import Image from "next/image";
 
 const CountrySelector = () => {
   const { refresh } = useRouter();
@@ -38,7 +39,7 @@ const CountrySelector = () => {
       onValueChange={(e) => changeCountry(e)}
     >
       <SelectTrigger
-        className="w-36 text-xs font-semibold tracking-wide text-dark/70 !ring-0 !ring-offset-0"
+        className="w-44 text-xs font-semibold tracking-wide !ring-0 !ring-offset-0"
         showChevron={false}
       >
         {isLoading ? (
@@ -52,9 +53,18 @@ const CountrySelector = () => {
           <SelectItem
             key={country.name}
             value={country.alpha3Code}
-            className="my-1 cursor-pointer !text-xs focus:bg-primary focus:text-white"
+            className="my-1 !flex cursor-pointer !text-xs focus:bg-primary focus:text-white"
           >
-            {country.name}
+            <div className="flex flex-wrap items-center justify-start gap-2">
+              <Image
+                src={`https://chautary-images-dev.s3.amazonaws.com/countries/${country.alpha3Code.toLowerCase()}/flag.png`}
+                alt={country.name}
+                height={20}
+                width={20}
+                className="shrink-0 object-contain"
+              />
+              <span>{country.name}</span>
+            </div>
           </SelectItem>
         ))}
       </SelectContent>
