@@ -57,11 +57,11 @@ const Header = () => {
     >
       <Link href="/">
         <Image
-          src="/assets/img/logo.png"
-          height={45}
+          src="/assets/img/logo.webp"
+          height={30}
           width={130}
           alt="chautary"
-          className="shrink-0 object-contain"
+          className="shrink-0"
           quality={100}
         />
       </Link>
