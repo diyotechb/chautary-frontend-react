@@ -96,13 +96,13 @@ const Footer = () => {
       </div>
       <section className="relative min-h-48 w-full overflow-visible md:min-h-64 lg:min-h-96">
         <Image
-          src="/assets/img/footer-image.png"
+          src="/assets/img/subtle-prism.svg"
           fill
           alt=""
-          className="object-fill"
+          className="object-fill opacity-40 blur filter"
         />
         <div className="absolute top-0 w-full">
-          <div className="mx-auto mt-16 h-2 max-w-screen-xl border-t px-8" />
+          <div className="mx-auto mt-16 h-2 max-w-screen-xl px-8" />
           <p className="mt-4 text-center text-sm font-medium">
             © {new Date().getFullYear()}{" "}
             <span className="text-primary">Chautary</span> All rights reserved.
