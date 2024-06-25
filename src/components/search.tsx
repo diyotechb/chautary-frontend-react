@@ -50,7 +50,7 @@ const Search: React.FC<SearchProps> = ({
     if (searchValue) {
       params.set("searchKeyword", searchValue);
     }
-    push(`/listings?${params.toString()}`);
+    push(`/business?${params.toString()}`);
   };
 
   const clearSearchFilter = () => {

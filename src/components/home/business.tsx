@@ -63,7 +63,7 @@ const Business = () => {
                         <BusinessCard
                           imageUrl={getImageofBusiness(business.id)}
                           name={business.name}
-                          linkUrl={`/listings/${business.id}`}
+                          linkUrl={`/business/${business.id}`}
                           businessDescriptors={[
                             {
                               icon: <MapPinned className="size-4" />,
@@ -80,10 +80,10 @@ const Business = () => {
                   : null}
               </ul>
               <Link
-                href="/listings"
+                href="/business"
                 className="rounded p-4 text-sm font-semibold ring ring-primary duration-500 hover:bg-primary hover:text-white hover:ring-offset-2"
               >
-                More Listings
+                More business
               </Link>
             </CategorySectionWithHeader>
           ) : (
@@ -101,7 +101,7 @@ const Business = () => {
                         <BusinessCard
                           imageUrl={getImageofBusiness(business.id)}
                           name={business.name}
-                          linkUrl={`/listings/${business.id}`}
+                          linkUrl={`/business/${business.id}`}
                           businessDescriptors={[
                             {
                               icon: <BedIcon className="size-4" />,
@@ -118,10 +118,10 @@ const Business = () => {
                   : null}
               </ul>
               <Link
-                href="/listings"
+                href="/business"
                 className="rounded p-4 text-sm font-semibold ring ring-primary duration-500 hover:bg-primary hover:text-white hover:ring-offset-2"
               >
-                More Listings
+                More business
               </Link>
             </CategorySectionWithHeader>
           )}

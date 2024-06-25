@@ -10,7 +10,7 @@ import { Loader } from "lucide-react";
 import dynamic from "next/dynamic";
 
 const CategoryFilter = dynamic(
-  () => import("@/components/listings/category-filter"),
+  () => import("@/components/business/category-filter"),
   {
     ssr: false,
   },
@@ -18,7 +18,7 @@ const CategoryFilter = dynamic(
 
 const BusinessGrid = dynamic(
   () =>
-    import("@/components/listings/business-grid").then(
+    import("@/components/business/business-grid").then(
       (mod) => mod.BusinessGrid,
     ),
   {
@@ -31,7 +31,7 @@ const BusinessGrid = dynamic(
   },
 );
 
-const ListingsPage = async ({
+const businessPage = async ({
   searchParams,
 }: {
   searchParams: {
@@ -107,4 +107,4 @@ const ListingsPage = async ({
   );
 };
 
-export default ListingsPage;
+export default businessPage;

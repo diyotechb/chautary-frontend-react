@@ -1,4 +1,4 @@
-import ListingTab from "@/components/listings/listing-tab";
+import ListingTab from "@/components/business/listing-tab";
 import { BusinessService } from "@/services";
 import { type Address, type Business } from "@/types";
 import {
@@ -20,7 +20,7 @@ const ListingPage = async ({
 }) => {
   const queryClient = new QueryClient();
   const businessId = params?.id ? params.id.toString() : 0;
-  if (!businessId) redirect("/listings");
+  if (!businessId) redirect("/business");
 
   await queryClient.prefetchQuery({
     queryKey: ["business", businessId],

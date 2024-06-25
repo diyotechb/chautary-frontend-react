@@ -64,7 +64,7 @@ export const BusinessGrid = ({
     <div className="w-full space-y-8">
       <div className="flex flex-col-reverse justify-between gap-4 md:flex-row md:items-center md:gap-0">
         <p className="text-sm font-semibold text-dark">
-          We found {businesses?.totalElement} listings available for you.
+          We found {businesses?.totalElement} business available for you.
         </p>
         <CategorySort sortBy={sortBy} />
       </div>
@@ -79,7 +79,7 @@ export const BusinessGrid = ({
               <BusinessCard
                 imageUrl={getImageofBusiness(business.id)}
                 name={business.name}
-                linkUrl={`/listings/${business.id}`}
+                linkUrl={`/business/${business.id}`}
                 businessDescriptors={[
                   {
                     icon: <BedIcon className="size-4" />,

@@ -12,7 +12,7 @@ const FOOTER_LINKS = [
       // },
       {
         title: "Business",
-        link: "/listings",
+        link: "/business",
       },
       {
         title: "Content Gudielines",
@@ -33,7 +33,7 @@ const FOOTER_LINKS = [
     links: [
       {
         title: "Business Nearby",
-        link: "/listings",
+        link: "/business",
       },
     ],
   },
@@ -42,7 +42,7 @@ const FOOTER_LINKS = [
     links: [
       {
         title: "By Category",
-        link: "/listings",
+        link: "/business",
       },
     ],
   },

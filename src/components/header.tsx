@@ -22,7 +22,7 @@ export const NAV_LINKS = [
   },
   {
     title: "Business",
-    link: "/listings",
+    link: "/business",
   },
   // {
   //   title: "About us",

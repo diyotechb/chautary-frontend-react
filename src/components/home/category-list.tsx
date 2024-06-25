@@ -12,7 +12,7 @@ const CategoryList = ({ categories }: { categories: Category[] }) => {
           className="group h-40 w-full cursor-pointer rounded-md border px-8 shadow-brandLight transition-shadow duration-200 ease-linear hover:shadow-brand sm:w-48"
         >
           <Link
-            href={`/listings?categoryId=${category.id}`}
+            href={`/business?categoryId=${category.id}`}
             className="flex h-full w-full flex-col items-center justify-center gap-4"
           >
             {category?.imageUrl ? (
@@ -35,7 +35,7 @@ const CategoryList = ({ categories }: { categories: Category[] }) => {
       ))}
       <li className="h-40 w-full cursor-pointer rounded-md bg-primary px-8 text-white shadow-brandLight transition-shadow duration-200 ease-linear hover:shadow-brand sm:w-48">
         <Link
-          href={"/listings"}
+          href={"/business"}
           className="flex h-full w-full flex-col items-center justify-center gap-4"
         >
           <PlusCircle className="size-12" />

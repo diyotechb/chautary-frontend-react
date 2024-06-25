@@ -128,7 +128,7 @@ const ListingTab = ({ businessId }: { businessId: string }) => {
                             <BusinessCard
                               imageUrl={getImageofBusiness(business.id)}
                               name={business.name}
-                              linkUrl={`/listings/${business.id}`}
+                              linkUrl={`/business/${business.id}`}
                               businessDescriptors={[
                                 {
                                   icon: <MapPinned className="size-4" />,
@@ -148,7 +148,7 @@ const ListingTab = ({ businessId }: { businessId: string }) => {
                     </Carousel>
                   ) : null}
                   <Link
-                    href="/listings"
+                    href="/business"
                     className="mx-auto mt-2 max-w-fit rounded p-2 text-sm font-semibold ring ring-primary duration-500 hover:bg-primary hover:text-white hover:ring-offset-2"
                   >
                     Show more
