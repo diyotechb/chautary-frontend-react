@@ -1,3 +1,4 @@
+import BannerCarousel from "@/components/home/banner-carousel";
 import CategorySectionWithHeader from "@/components/home/categories";
 import CategoryList from "@/components/home/category-list";
 import { HowItWorks } from "@/components/home/how-it-works";
@@ -11,7 +12,6 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { Suspense } from "react";
 
 const Business = dynamic(() => import("@/components/home/business"), {
@@ -41,16 +41,9 @@ export default async function Home() {
 
   return (
     <main className="flex w-full flex-col gap-12 md:gap-20">
-      <div className="relative flex h-[90vh]">
-        <Image
-          src="/assets/img/main-banner-bg.jpg"
-          alt=""
-          fill
-          className="pointer-events-none -z-10 -mt-2 min-h-full w-full select-none object-cover object-left"
-          draggable={false}
-          priority
-        />
-        <section className="mx-auto mt-32 flex w-full flex-col gap-8 px-2 lg:mx-20 lg:mt-52 lg:max-w-[900px] xl:ml-40">
+      <div className="relative flex flex-col">
+        <BannerCarousel />
+        <section className="top-14 mx-auto mt-2 flex w-full flex-col gap-8 px-2 lg:absolute lg:mx-20 lg:max-w-[900px] xl:top-36 xl:ml-40">
           <div className="w-full">
             <div className="flex space-x-2 text-wrap text-start text-3xl font-bold leading-relaxed sm:text-4xl xl:text-[50px]">
               <span>Find</span>
