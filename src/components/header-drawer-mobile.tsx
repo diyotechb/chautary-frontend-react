@@ -1,5 +1,6 @@
 "use client";
 
+import { isActive } from "@/lib/pathname-util";
 import { cn } from "@/lib/utils";
 import { Menu, XIcon } from "lucide-react";
 import Link from "next/link";
@@ -32,13 +33,13 @@ const HeaderDrawerMobile = () => {
       </SheetTrigger>
       <SheetContent side={"top"} className="top-16 space-y-4 !outline-none">
         <nav>
-          <ul className="flex list-none flex-col items-start justify-start space-y-4">
+          <ul className="flex list-none flex-col items-start justify-start gap-4">
             {NAV_LINKS.map((item) => (
               <li
                 key={item.title}
                 className={cn(
-                  "cursor-pointer px-4 font-medium transition-colors duration-300 hover:text-primary",
-                  pathname.includes(item.link) && "text-primary",
+                  "cursor-pointer px-4 py-1 font-medium transition-colors duration-300 hover:text-primary",
+                  isActive(pathname, item.link) && "text-primary",
                 )}
               >
                 <Link href={item.link} onClick={() => setIsOpen(false)}>
