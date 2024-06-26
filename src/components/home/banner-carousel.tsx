@@ -7,10 +7,20 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const BannerCarousel = () => {
   return (
-    <Carousel>
+    <Carousel
+      opts={{
+        loop: true,
+      }}
+      plugins={[
+        Autoplay({
+          delay: 5000,
+        }),
+      ]}
+    >
       <CarouselContent>
         <CarouselItem>
           <Image
