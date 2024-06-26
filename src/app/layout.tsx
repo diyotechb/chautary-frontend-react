@@ -1,5 +1,3 @@
-import Footer from "@/components/footer";
-import Header from "@/components/header";
 import { cn } from "@/lib/utils";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { Metadata } from "next";
@@ -26,9 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(poppins.className, "scroll-smooth antialiased")}>
         <Providers>
-          <Header />
           {children}
-          <Footer />
           <ReactQueryDevtools initialIsOpen={false} />
         </Providers>
       </body>
