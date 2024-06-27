@@ -49,24 +49,26 @@ const CountrySelector = () => {
         )}
       </SelectTrigger>
       <SelectContent className="z-[110] font-medium" position="item-aligned">
-        {countries?.map((country) => (
-          <SelectItem
-            key={country.name}
-            value={country.alpha3Code}
-            className="my-1 !flex cursor-pointer !text-xs focus:bg-primary focus:text-white"
-          >
-            <div className="flex flex-wrap items-center justify-start gap-2">
-              <Image
-                src={`https://chautary-images-dev.s3.amazonaws.com/countries/${country.alpha3Code.toLowerCase()}/flag.png`}
-                alt={country.name}
-                height={20}
-                width={20}
-                className="shrink-0 object-contain"
-              />
-              <span>{country.name}</span>
-            </div>
-          </SelectItem>
-        ))}
+        {countries &&
+          countries.length > 0 &&
+          countries.map((country) => (
+            <SelectItem
+              key={country.name}
+              value={country.alpha3Code}
+              className="my-1 !flex cursor-pointer !text-xs focus:bg-primary focus:text-white"
+            >
+              <div className="flex flex-wrap items-center justify-start gap-2">
+                <Image
+                  src={`https://chautary-images-dev.s3.amazonaws.com/countries/${country.alpha3Code.toLowerCase()}/flag.png`}
+                  alt={country.name}
+                  height={20}
+                  width={20}
+                  className="shrink-0 object-contain"
+                />
+                <span>{country.name}</span>
+              </div>
+            </SelectItem>
+          ))}
       </SelectContent>
     </Select>
   );
