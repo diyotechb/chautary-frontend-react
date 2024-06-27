@@ -2,12 +2,12 @@
 
 import { isActive } from "@/lib/pathname-util";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import HeaderDrawerMobile from "./header-drawer-mobile";
-import dynamic from "next/dynamic";
+import Logo from "./logo";
 import { Shimmer } from "./shimmers/shimmer";
 
 const CountrySelector = dynamic(() => import("./country-selector"), {
@@ -55,16 +55,7 @@ const Header = () => {
           "fixed top-0 z-[100] translate-y-0 !shadow-md slide-in-from-top-4",
       )}
     >
-      <Link href="/">
-        <Image
-          src="/assets/img/logo.webp"
-          height={30}
-          width={130}
-          alt="chautary"
-          className="h-10 shrink-0 object-contain"
-          quality={100}
-        />
-      </Link>
+      <Logo />
       <nav className="hidden lg:block">
         <ul className="flex list-none items-center justify-center space-x-4">
           {NAV_LINKS.map((item) => (
