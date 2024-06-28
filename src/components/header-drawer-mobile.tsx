@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import CountrySelector from "./country-selector";
+import DashboardAuth from "./dashboard-auth";
 import { NAV_LINKS } from "./header";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
@@ -50,12 +51,7 @@ const HeaderDrawerMobile = () => {
           </ul>
         </nav>
         <div className="flex flex-wrap items-center justify-center gap-4">
-          {/* <Button
-            variant="outline"
-            className="rounded-full border border-primary px-8 py-6 text-primary duration-500 hover:bg-primary hover:text-white"
-          >
-            Dashboard <ChevronRight />
-          </Button> */}
+          <DashboardAuth />
           <CountrySelector />
         </div>
       </SheetContent>
