@@ -36,7 +36,6 @@ const DashboardAuth = () => {
               <span className="mt-2 flex items-center justify-center text-center text-sm">
                 Don&apos;t have an account?
                 <Button
-                  className="pl-1"
                   variant="link"
                   onClick={() => {
                     setActiveTab("register");
@@ -51,7 +50,6 @@ const DashboardAuth = () => {
               <span className="mt-2 flex items-center justify-center text-center text-sm">
                 Already have an account?
                 <Button
-                  className="pl-1"
                   variant="link"
                   onClick={() => {
                     setActiveTab("login");
