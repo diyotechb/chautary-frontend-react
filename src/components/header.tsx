@@ -2,12 +2,13 @@
 
 import { isActive } from "@/lib/pathname-util";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import DashboardAuth from "./dashboard-auth";
 import HeaderDrawerMobile from "./header-drawer-mobile";
-import dynamic from "next/dynamic";
 import { Shimmer } from "./shimmers/shimmer";
 
 const CountrySelector = dynamic(() => import("./country-selector"), {
@@ -82,12 +83,7 @@ const Header = () => {
       </nav>
       <div className="hidden items-center justify-center gap-8 lg:flex">
         {/* hide dashboard button */}
-        {/* <Button
-          variant="outline"
-          className="rounded-full border border-primary px-8 py-6 text-primary !ring-0 duration-500 hover:bg-primary hover:text-white"
-        >
-          Dashboard <ChevronRight />
-        </Button> */}
+        <DashboardAuth />
         <CountrySelector />
       </div>
       <HeaderDrawerMobile />
