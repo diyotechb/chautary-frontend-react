@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers/query-client";
+import { Toaster } from "@/components/ui/sonner";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body className={cn(poppins.className, "scroll-smooth antialiased")}>
         <Providers>
           {children}
+          <Toaster />
           <ReactQueryDevtools initialIsOpen={false} />
         </Providers>
       </body>
