@@ -21,6 +21,9 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import { useMutation } from "@tanstack/react-query";
+import { authService } from "@/services";
+import { Loader } from "lucide-react";
 
 const RegisterForm = () => {
   const form = useForm<TRegistrationSchema>({
@@ -35,8 +38,25 @@ const RegisterForm = () => {
     resolver: zodResolver(RegistrationSchema),
   });
 
+  const { mutate: registerUser, isPending } = useMutation({
+    mutationKey: ["register"],
+    mutationFn: authService.RegisterUser,
+    onSuccess: (res) => {
+      console.log(res);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+
   const submitHandler = (data: TRegistrationSchema) => {
-    console.log("submitHandler", data);
+    registerUser({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password,
+      middleName: "",
+    });
   };
 
   return (
@@ -117,7 +137,10 @@ const RegisterForm = () => {
             />
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full" disabled={isPending}>
+              {isPending && (
+                <Loader className="ml-2 animate-spin text-inherit" />
+              )}
               Register Now
             </Button>
           </CardFooter>

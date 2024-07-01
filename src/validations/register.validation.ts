@@ -3,6 +3,7 @@ import { z } from "zod";
 export const RegistrationSchema = z
   .object({
     firstName: z.string().min(1, { message: "Please enter your first name" }),
+    middleName: z.string().optional(),
     lastName: z.string().min(1, { message: "Please enter your last name" }),
     email: z.string().email({ message: "Invalid email address" }),
     password: z
