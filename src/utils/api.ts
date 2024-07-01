@@ -21,7 +21,7 @@ API.interceptors.response.use(
     return Promise.resolve(response.data);
   },
   (error: AxiosError) => {
-    return Promise.reject(error.response);
+    return Promise.reject(error.response?.data);
   },
 );
 export { API };

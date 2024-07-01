@@ -1,9 +1,13 @@
+import { authService } from "@/services";
 import {
   RegistrationSchema,
   type TRegistrationSchema,
 } from "@/validations/register.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { Loader } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -21,9 +25,6 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { useMutation } from "@tanstack/react-query";
-import { authService } from "@/services";
-import { Loader } from "lucide-react";
 
 const RegisterForm = () => {
   const form = useForm<TRegistrationSchema>({
@@ -42,10 +43,10 @@ const RegisterForm = () => {
     mutationKey: ["register"],
     mutationFn: authService.RegisterUser,
     onSuccess: (res) => {
-      console.log(res);
+      toast.success(res?.data?.message);
     },
     onError: (err) => {
-      console.log(err);
+      toast.error(err?.message);
     },
   });
 
